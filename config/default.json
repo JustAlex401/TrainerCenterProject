@@ -1,0 +1,15 @@
+{
+    "port":3000,
+    
+    "HOST": "localhost",
+    "USER": "root",
+    "PASSWORD": "sasha991999a",
+    "DB": "iTechart_proj",
+    "dialect": "mysql",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+}
