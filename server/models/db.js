@@ -1,8 +1,9 @@
 const dbConfig = require('config');
 const Sequelize = require("sequelize");
-const {models} = require("./models");
+const {userCr} = require("./user.model");
+const {roleCr} = require("./role.module");
 
-const sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get("PASSWORD"),
+sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get("PASSWORD"),
     {
    host: dbConfig.get("HOST"),
    dialect: dbConfig.get("dialect"),
@@ -19,10 +20,18 @@ const sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConf
    }
  });
 
- const db = models(sequelize, Sequelize);
+ const user = userCr(sequelize, Sequelize);
+ const role = roleCr(sequelize, Sequelize);
 
- db.Sequelize = Sequelize;
- db.sequelize = sequelize;
+ const db = {
+   user: user,
+   role: role,
+   Sequelize: Sequelize,
+   sequelize: sequelize
+ }
+
+//  db.role.hasMany(db.user, {foreignKey: 'role_id'});
+//  db.user.belongsTo(db.role, {foreignKey: 'role_id'});
 
  module.exports = {
     db

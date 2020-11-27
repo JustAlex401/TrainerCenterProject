@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-const models = (sequelize, Sequelize) => {
-
+const userCr = (sequelize, Sequelize) => {
 
     const User = sequelize.define("user", {
         id: {
@@ -10,17 +9,18 @@ const models = (sequelize, Sequelize) => {
             primaryKey: true,
           },
 
-          login: {  
+        login: {  
+            type: Sequelize.STRING,
+            unique: true,
+            allowNull: false,
+          },
+
+        password: {  
             type: Sequelize.STRING,
             allowNull: false,
           },
 
-          password: {  
-            type: Sequelize.STRING,
-            allowNull: false,
-          },
-
-          email: {  
+        email: {  
             type: Sequelize.STRING,
             allowNull: false,
             unique: {
@@ -28,39 +28,47 @@ const models = (sequelize, Sequelize) => {
                 msg: 'Email already exists', 
                 fields: ['email']
             },
-            validate:{
+
+        validate:{
                 notEmpty:{
                     args:true,
-                    msg:"Email-id required"
+                    msg:"Email required"
                 },
                 isEmail:{
                     args:true,
-                    msg:'Valid email-id required'
+                    msg:'Valid email required'
                 }
             }
           },
 
-          active: {
+        active: {
               type: DataTypes.BOOLEAN,
-          }},
+              defaultValue: 0,
+          },
+
+        role_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+              model: 'roles',
+              key: 'id',
+            }
+        }
+        
+        },
 
           {
-          indexes: [
+        indexes: [
             {
                 unique: true,
                 fields: ['id']
             }
         ]
-
     })
 
-    const db = {
-        user: User
-    }
-
-    return db;
+    return User;
 }
 
 module.exports ={
-    models 
+    userCr 
   }

@@ -11,5 +11,12 @@
       "min": 0,
       "acquire": 30000,
       "idle": 10000
-    }
+    },
+
+    "adminEmail": "admin@mail.ru",
+    "adminLogin": "admin",
+    "adminPassword": "admin",
+
+    "emailSend":"ap8432446@gmail.com",
+    "emailPassword":"123qwe123alex"
 }
