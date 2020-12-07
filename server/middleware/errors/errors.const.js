@@ -1,4 +1,3 @@
-// const { request } = require("express");
 
 const err = {
     400: "Bad request",

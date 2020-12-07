@@ -4,12 +4,15 @@ const config = require('config');
 const {db} = require('./server/models/db')
 const app = express();
 const PORT=config.get('port') || 5000
-const router = require('./server/routes/auth.routes');
 const {handleError} = require('./server/middleware/errors/error');
 const defWork = require('./server/middleware/DbStart/index');
+const routes = require('./server/routes/routes');
 
+
+app.use(express.json({extended: true}));
 app.use(bodyParser.json());
-app.use('/api/auth', router);
+routes(app);
+
 
 (async () => {
   await db.sequelize.sync({ force: false }).then(() => {

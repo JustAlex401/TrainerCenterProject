@@ -1,5 +1,4 @@
 const {check} = require('express-validator');
-// const controller  = require("../controllers/auth.controller.js");
 const controller  = require("../controllers/index");
 
 let routerAuth = require("express").Router();
@@ -14,16 +13,20 @@ routerAuth.post(
 
 routerAuth.post(
     "/login", 
-    [
-        check('password', "Enter password").exists
-    ],
     controller.login
 );
 
 routerAuth.get(
-    '/activate/:login',
+    '/activate',
     controller.activate
 );
+
+routerAuth.post(
+    '/logout',
+    controller.logout
+)
+
+
 
 
 module.exports=routerAuth;

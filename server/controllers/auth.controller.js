@@ -2,35 +2,37 @@ const Service = require('../services/index');
 const { validationResult } = require('express-validator');
 const {ErrorHandler} = require('../middleware/errors/error');
 const err = require('../middleware/errors/errors.const');
-const mail = require('../middleware/mail/send.mail');
+
+// const jwt = require('jsonwebtoken');
+// const rediscl = require('../middleware/redis/redis.generate');
+// const randtoken = require('rand-token') 
+// const config = require('config');
+// var CryptoJS = require("crypto-js");
 
 const registration = async function registration(req, res, next){
 
     try{
+
         const errors = validationResult(req);
+
         if(!errors.isEmpty()){
-            // return res.status(400).json({
-            //     message: errors.errors[0]["msg"]
-            // })
             throw new ErrorHandler(400, err[400]);
         }
 
         const regForm=req.body;
 
-        await Service.registrationServ(regForm).then(data => {
-            mail(regForm.email, regForm.login);
-            res.status(201).json({message: data});
-        }).catch(error=> {
-            // res.status(400).json({message: err});
-            throw new ErrorHandler(400, err[400]);
-        })
+        const data = await Service.registrationServ(regForm);
+
+        res.status(201).json({message: data});
 
         next();
     }catch(error){
-        next(error);
+        console.log(error);
+        next( new ErrorHandler(400, err[400]) );
     }
-
 }
+
+
 
 const login = async function login(req, res, next){
 
@@ -38,46 +40,51 @@ const login = async function login(req, res, next){
         const errors = validationResult(req);
 
         if(!errors.isEmpty()){
-            // return res.status(400).json({
-            //     message: errors.errors[0]["msg"]
-            // })
             throw new ErrorHandler(400, err[400]);
         }   
 
         const loginForm=req.body;
 
-        await Service.loginServ(loginForm).then(data => {
-            res.status(200).json({message: data});
-        }).catch(err => {
-            // res.status(400).json({message: ""});
-            throw new ErrorHandler(400, err[400]);
-        })
+        const data = await Service.loginServ(loginForm);
+        
+        res.status(200).json({userId: data.id, token: data.token, refresh_token: data.refresh_token, role: data.role});
 
         next();
     }catch(error){
-        next(error);
+        console.log(error);
+        next(new ErrorHandler(400, err[400]));
     }
 }
 
 const activate = async function activate(req, res, next){
     try{
-        // console.log(req.params.login);
-        const login=req.params.login;
-        if(!login){
-            throw new ErrorHandler(400, err[400]);
-        }
 
-        await Service.activateServ(login)
-        .then(data => { console.log(data)
-            res.status(200).json({message: data});
-        })
-        .catch(err =>{
-            throw new ErrorHandler(400, err[400]);
-        })
+        let login=req.query.login;
+       
+        const data = await Service.activateServ(login)
+
+        res.status(200).json({message: data});
 
         next();
     }catch(error){
-        next(error);
+        console.log(error);
+        next(new ErrorHandler(400, err[400]));
+    }
+}
+
+
+const logout = async function logout(req, res, next){
+    try{
+        const usId = req.body.userId;
+    
+        const data = await Service.logoutServ(usId);
+
+        res.status(200).json({message: data});
+
+        next();
+    }catch(error){
+        console.log(error);
+        next(new ErrorHandler(400, err[400]));
     }
 }
 
@@ -85,5 +92,6 @@ const activate = async function activate(req, res, next){
 module.exports={
     registration,
     login,
-    activate
+    activate,
+    logout
 }

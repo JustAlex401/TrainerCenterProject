@@ -1,20 +1,13 @@
 const {db} = require("../models/db");
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const User = db.user;
+const Role = db.role;
 
 const registration = async function registration(regForm){
 
-    const hashedPassword = await bcrypt.hash(regForm.password, 12);
+    const user = await User.create(regForm);
 
-    regForm.password=hashedPassword;
-    regForm.active=0;
-    regForm.role_id=2;
-
-    await User.create(regForm).catch(err => {
-        throw err.message;
-    });
-
-    return "User was created";
+    return user;
 }
 
 const login = async function login(loginForm){
@@ -27,34 +20,30 @@ const login = async function login(loginForm){
         }
     );
 
-    if(!user || (user.active !== 1)){
-        throw "User not found";
-        // throw Error;
-    } 
+    const role = await Role.findOne({
+        where: {
+            id: user.role_id,
+        }
+    });
+    
+    user["dataValues"].role=role.role;
 
-    const isMatch = await bcrypt.compare(loginForm.password, user.password);
-
-    if(!isMatch){
-        throw "Incorrect Data";
-    }
+    return user["dataValues"];
 
 }
 
 const activate = async function activate(login){
-    await User.update({
+    const user = await User.update({
         active: 1,
     }, 
     {
         where: {
             login: login,
         }
-    }).catch(err => {
-        throw err.message;
-    });
+    })
 
-    return "Success updated data";
+    return user;
 }
-
 
 module.exports = {
     registration,

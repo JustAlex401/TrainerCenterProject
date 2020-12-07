@@ -1,20 +1,14 @@
-const controller = require('./auth.controller');
+const authController = require('./auth.controller');
+const trainerController = require('./trainer.controller');
 
 
-const registration = async function registration(req, res, next){
-    return await controller.registration(req, res, next);
+const controller = {
+    registration : authController.registration,
+    login : authController.login,
+    activate : authController.activate,
+    getListTrainers: trainerController.getListTrainers,
+    logout: authController.logout,
 }
 
-const login = async function login(req, res, next){
-    return await controller.login(req, res, next);
-}
 
-const activate = async function activate(req, res, next){
-    return await controller.activate(req, res, next);
-}
-
-module.exports = {
-    registration,
-    login,
-    activate
-}
+module.exports=controller;

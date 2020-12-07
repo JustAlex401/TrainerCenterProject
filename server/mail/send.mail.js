@@ -17,7 +17,7 @@ const mail = function sendMail(email, login){
         from: `"ap8432446" <${config.get('emailSend')}>`,
         to: `${email}`,
         subject: 'Teste Templete ✔',
-        html: `<a href="http://localhost:3000/api/auth/activate/${login}">Verify</a>`
+        html: `<a href="http://localhost:3000/api/auth/activate?login=${login}">Verify</a>`
     };
     
     transporter.sendMail(mailOptions, (error, info) => {

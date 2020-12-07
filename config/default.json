@@ -18,5 +18,9 @@
     "adminPassword": "admin",
 
     "emailSend":"ap8432446@gmail.com",
-    "emailPassword":"123qwe123alex"
+    "emailPassword":"123qwe123alex",
+
+    "jwtSecret": "JustAlex Project",
+    "jwt_expiration": 600,
+    "jwt_refresh_expiration": 2592000
 }

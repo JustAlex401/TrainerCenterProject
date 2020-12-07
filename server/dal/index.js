@@ -1,19 +1,12 @@
 const authDal = require('./auth.dal');
+const trainerDal = require('./trainer.dal');
 
-const registration = async function registration (regForm){
-    return await authDal.registration(regForm);
+const dal = {
+    login: authDal.login,
+    registration: authDal.registration,
+    activate: authDal.activate,
+    getListTrainers: trainerDal.getListTrainers,
 }
 
-const login = async function login (loginForm){
-    return await authDal.login(loginForm);
-}
+module.exports=dal;
 
-const activate = async function activate (login){
-    return await authDal.activate(login);
-}
-
-module.exports = {
-    registration,
-    login,
-    activate
-}

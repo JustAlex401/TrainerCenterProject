@@ -1,19 +1,31 @@
 const authServ = require('./auth.service');
+const trainerServ = require('./trainer.service');
 
-const registrationServ = async function registrationServ(regForm){
-    return await authServ.registrationServ(regForm)
+
+const Service = {
+    registrationServ: authServ.registrationServ,
+    loginServ: authServ.loginServ,
+    activateServ: authServ.activateServ,
+    getListTrainersService: trainerServ.getListTrainersService,
+    logoutServ: authServ.logoutServ,
 }
 
-const loginServ = async function loginServ(regForm){
-    return await authServ.loginServ(regForm)
-}
+module.exports=Service;
 
-const activateServ = async function activateServ(login){
-    return await authServ.activateServ(login)
-}
+// const registrationServ = async function registrationServ(regForm){
+//     return await authServ.registrationServ(regForm)
+// }
 
-module.exports = {
-    registrationServ, 
-    loginServ,
-    activateServ
-}
+// const loginServ = async function loginServ(regForm){
+//     return await authServ.loginServ(regForm)
+// }
+
+// const activateServ = async function activateServ(login){
+//     return await authServ.activateServ(login)
+// }
+
+// module.exports = {
+//     registrationServ, 
+//     loginServ,
+//     activateServ
+// }
