@@ -1,29 +1,30 @@
 import React from 'react';
-import Header from './components/header/header';
-import {Registration} from './components/authPage/registration';
+import Header from './components/header/Header';
+import {Registration} from './components/authPage/Registration';
 import {Switch, Route, BrowserRouter as Router, Redirect} from 'react-router-dom';
 import 'materialize-css';
 import './index.css';
-import { Login } from './components/authPage/login';
-import VerEm from './components/authPage/verify.email';
-import Footer from './components/footer/footer';
+import { Login } from './components/authPage/Login';
+import VerEm from './components/authPage/VerifyEmail';
+import Footer from './components/footer/Footer';
 import { useAuth } from './hooks/auth.hook';
-import { AuthContext } from './context/authContext';
-import { Profile } from './components/profile/profile';
+import { AuthContext } from './context/AuthContext';
+import { Profile } from './components/profile/UserProfile';
 import { useRoutes } from './routes';
 
 
 function App() {
   
-  const {login, logout, token, userId, refreshToken} = useAuth();
+  const {login, logout, token, userId, refreshToken, role} = useAuth();
   console.log(token)
+  debugger;
   let isAuthenticated = !!token || !!refreshToken;
-  const routes = useRoutes(isAuthenticated);
+  const routes = useRoutes(isAuthenticated, role);
 
-    console.log(isAuthenticated)
+    // console.log(isAuthenticated)
     return (
       <AuthContext.Provider value={{
-                token, userId, refreshToken, login, logout, isAuthenticated
+                token, userId, refreshToken, login, logout, isAuthenticated, role
       }}>
         <Router>
           <div className="AAA">

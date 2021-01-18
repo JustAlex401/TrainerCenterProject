@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/AuthContext';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 
@@ -32,9 +32,14 @@ export const Login = () => {
         try{
             const data= await request('/api/auth/login', 'POST', {...form});
             message("Login is successful!");
-            console.log(data)
-            auth.login(data.token, data.refresh_token, data.userId);
+            console.log(data);
             
+            auth.login(data.token, data.refresh_token, data.userId, data.role);
+            
+            // if(data.role === "user"){
+                // history.push('');
+            // }
+            // history.push('/userProfile');
         }catch(e){
             console.log("error")
             console.log(e.message);

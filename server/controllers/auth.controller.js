@@ -3,12 +3,6 @@ const { validationResult } = require('express-validator');
 const {ErrorHandler} = require('../middleware/errors/error');
 const err = require('../middleware/errors/errors.const');
 
-// const jwt = require('jsonwebtoken');
-// const rediscl = require('../middleware/redis/redis.generate');
-// const randtoken = require('rand-token') 
-// const config = require('config');
-// var CryptoJS = require("crypto-js");
-
 const registration = async function registration(req, res, next){
 
     try{

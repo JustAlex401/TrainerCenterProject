@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
-import VerEm from './verify.email';
+import VerEm from './VerifyEmail';
 
 
 export const Registration = () => {
