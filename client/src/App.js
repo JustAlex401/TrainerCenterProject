@@ -4,9 +4,9 @@ import {Registration} from './components/authPage/Registration';
 import {Switch, Route, BrowserRouter as Router, Redirect} from 'react-router-dom';
 import 'materialize-css';
 import './index.css';
-import { Login } from './components/authPage/Login';
+import { Login } from './components/authPage/login/Login';
 import VerEm from './components/authPage/VerifyEmail';
-import Footer from './components/footer/Footer';
+// import Footer from './components/footer/Footer';
 import { useAuth } from './hooks/auth.hook';
 import { AuthContext } from './context/AuthContext';
 import { Profile } from './components/profile/UserProfile';
@@ -15,7 +15,7 @@ import { useRoutes } from './routes';
 
 function App() {
   
-  const {login, logout, token, userId, refreshToken, role} = useAuth();
+  const {login, logout, token, userId, refreshToken, role, loginU} = useAuth();
   console.log(token)
   debugger;
   let isAuthenticated = !!token || !!refreshToken;
@@ -24,7 +24,7 @@ function App() {
     // console.log(isAuthenticated)
     return (
       <AuthContext.Provider value={{
-                token, userId, refreshToken, login, logout, isAuthenticated, role
+                token, userId, refreshToken, login, logout, isAuthenticated, role, loginU
       }}>
         <Router>
           <div className="AAA">

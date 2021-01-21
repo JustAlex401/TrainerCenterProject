@@ -6,10 +6,14 @@ import Cookies from 'js-cookie';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 const AdminProfile = () => {
 
     const history = useHistory();
+    const login = useSelector((state) => {
+      return state.user.data.login;
+    })
     const auth = useContext(AuthContext);
     const {request, error, clearError} = useHttp();
     const message = useMessage(); 
@@ -42,7 +46,7 @@ const AdminProfile = () => {
         <nav>
         
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" class="brand-logo">{login}</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/" onClick={logoutHandler}>logout</a></li>
           </ul>

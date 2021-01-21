@@ -5,17 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { rootReducer } from './redux/rootReducer';
 
 const store = createStore(rootReducer, compose(
-  applyMiddleware(
-    thunk
-  )
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ))
 
 const app = (
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+         <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Switch, Route, Redirect, Router} from 'react-router-dom';
-import { Login } from './components/authPage/Login';
+import { Login } from './components/authPage/login/Login';
 import { Registration } from './components/authPage/Registration';
 import VerEm from './components/authPage/VerifyEmail';
 import Header from './components/header/Header';
