@@ -1,5 +1,5 @@
 {
-    "port":3000,
+    "port":5000,
     
     "HOST": "localhost",
     "USER": "root",
@@ -11,5 +11,16 @@
       "min": 0,
       "acquire": 30000,
       "idle": 10000
-    }
+    },
+
+    "adminEmail": "admin@mail.ru",
+    "adminLogin": "admin",
+    "adminPassword": "admin",
+
+    "emailSend":"ap8432446@gmail.com",
+    "emailPassword":"123qwe123alex",
+
+    "jwtSecret": "JustAlex Project",
+    "jwt_expiration": 600,
+    "jwt_refresh_expiration": 2592000
 }

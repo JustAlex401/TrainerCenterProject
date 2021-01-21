@@ -1,24 +1,74 @@
+const { ErrorHandler } = require("../middleware/errors/error");
 const {db} = require("../models/db");
-const bcrypt = require('bcrypt');
 const User = db.user;
+const Role = db.role;
+const err = require('../middleware/errors/errors.const');
 
-const reg = async function reg(regForm){
+const registration = async function registration(regForm){
 
-    const hashedPassword = await bcrypt.hash(regForm.password, 12);
+    let user; 
 
-    regForm.password=hashedPassword;
-    regForm.active=0;
+    try{
+         user = await User.create(regForm);
+    } catch (error) {
+        throw new ErrorHandler(500, err[500]);
+    }
 
-    await User.create(regForm).then(data=>{
-        console.log(data);
-    }).catch(err => {
-        throw err.message;
-    });
-
-    return "User was created";
+    return user;
 }
 
+const login = async function login(loginForm){
+
+    let user;
+
+    try{
+        user = await User.findOne(
+            {
+                where: {
+                    login: loginForm.login,
+                }
+            }
+        );
+
+        const role = await Role.findOne({
+            where: {
+                id: user.role_id,
+            }
+        });
+        
+        user["dataValues"].role=role.role;
+
+    } catch (error) {
+        throw new ErrorHandler(500, err[500]);
+    }
+
+    return user["dataValues"];
+
+}
+
+const activate = async function activate(login){
+
+    let user;
+
+    try{
+
+        user = await User.update({
+            active: 1,
+        }, 
+        {
+            where: {
+                login: login,
+            }
+        })
+    } catch(error) {
+        throw new ErrorHandler(500, err[500]);
+    }
+
+    return user;
+}
 
 module.exports = {
-    reg,
+    registration,
+    login,
+    activate,
 }
