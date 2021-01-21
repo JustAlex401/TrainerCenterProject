@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const UserProfile = () => {
 
@@ -13,6 +14,9 @@ const UserProfile = () => {
     const auth = useContext(AuthContext);
     const {request, error, clearError} = useHttp();
     const message = useMessage(); 
+    const login = useSelector((state) => {
+      return state.user.data.login;
+    })
 
     useEffect(()=>{
       message(error);
@@ -42,7 +46,7 @@ const UserProfile = () => {
         <nav>
         
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Logo</a>
+          <a href="#" class="brand-logo">{login}</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/" onClick={logoutHandler}>logout</a></li>
           </ul>

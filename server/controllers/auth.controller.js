@@ -41,7 +41,7 @@ const login = async function login(req, res, next){
 
         const data = await Service.loginServ(loginForm);
         
-        res.status(200).json({userId: data.id, token: data.token, refresh_token: data.refresh_token, role: data.role});
+        res.status(200).json({userId: data.id, token: data.token, refresh_token: data.refresh_token, role: data.role, login: data.login});
 
         next();
     }catch(error){

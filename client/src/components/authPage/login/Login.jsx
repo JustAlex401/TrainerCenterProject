@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
-import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
+import { AuthContext } from '../../../context/AuthContext';
+import { useHttp } from '../../../hooks/http.hook';
+import { useMessage } from '../../../hooks/message.hook';
+import { useDispatch, useSelector } from "react-redux";
+import { setUserProfile } from './actions';
 
 
 export const Login = () => {
 
     const auth = useContext(AuthContext);
-
+    const dispatch = useDispatch();
     let history = useHistory();
     const message = useMessage(); 
     const {loading, request, error, clearError} = useHttp();
@@ -34,12 +36,14 @@ export const Login = () => {
             message("Login is successful!");
             console.log(data);
             
-            auth.login(data.token, data.refresh_token, data.userId, data.role);
+            auth.login(data.token, data.refresh_token, data.userId, data.role, data.login);
             
             // if(data.role === "user"){
                 // history.push('');
             // }
             // history.push('/userProfile');
+
+            dispatch(setUserProfile(data))
         }catch(e){
             console.log("error")
             console.log(e.message);
