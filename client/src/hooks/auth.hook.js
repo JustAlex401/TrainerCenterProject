@@ -8,7 +8,6 @@ export const useAuth = () => {
     const [userId , setUserId] = useState(null);
     const [role, setRole] = useState(null);
     const [loginU, setloginU] = useState(null);
-    // const [cookies, setCookie] = useCookies(["token"]);
 
     const login = useCallback((jwtToken, refreshToken, id, role, login)=>{
         setToken(jwtToken);
@@ -49,7 +48,6 @@ export const useAuth = () => {
             role : Cookies.get('role'),
             loginU : Cookies.get('login')
         }
-        console.log(data);
         if (data && data.token && data.refreshToken){
             login(data.token, data.refreshToken, data.id, data.role, data.loginU);
         }

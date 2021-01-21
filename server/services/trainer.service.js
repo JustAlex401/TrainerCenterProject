@@ -9,7 +9,6 @@ const getListTrainersService =  async function getListTrainersService(){
     try{
         data = await dal.getListTrainers();
         console.log(data);
-        debugger;
     } catch (error) {
         throw new ErrorHandler(500, err[500]);
     } 

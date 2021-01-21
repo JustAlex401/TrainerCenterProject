@@ -1,21 +1,21 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
+import { getTrainerList } from './actions';
 
-const Trainer = () => {
+const TrainerList = () => {
 
     const {loading, request, error, clearError} = useHttp();
-
+    const dispatch = useDispatch();
     useEffect(() => {
-
-        fetchData;
-    }, [request]);
+        fetchData();
+    }, []);
 
     const fetchData = async () => {
         try{
-             console.log("AAA");
-            const data = await request('/api/trainer/trainerList', 'GET');
-            console.log(data)
+            console.log("AAA");
+            dispatch(getTrainerList());
         } catch (err) {
                 console.log(err);
         }
@@ -25,11 +25,10 @@ const Trainer = () => {
     return (
         <div>
                  <p>AAAA</p>
-                {/* <button onClick={fetchData} disabled={loading}>AAA</button> */}
         </div>
       
     );
 }
 
-export default Trainer;
+export default TrainerList;
 

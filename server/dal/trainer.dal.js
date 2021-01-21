@@ -20,7 +20,7 @@ const getListTrainers = async function getListTrainers () {
         // })
         data = await db.sequelize.query(
             `
-                select * from users join trainers on users.trainerId = trainers.id;
+                select u.id, u.login, u.email, t.age, t.weight from users u join trainers t on u.trainerId = t.id;
             `
             , {type: QueryTypes.SELECT});
             console.log("AAa")
