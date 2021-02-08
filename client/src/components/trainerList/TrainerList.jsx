@@ -1,30 +1,33 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHttp } from '../../hooks/http.hook';
+import { useDispatch, useSelector } from 'react-redux';
+// import { useHttp } from '../../hooks/http.hook';
 import { getTrainerList } from './actions';
+// import classnames from 'classnames';
 
-const TrainerList = () => {
-
-    const {loading, request, error, clearError} = useHttp();
-    const dispatch = useDispatch();
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try{
-            console.log("AAA");
-            dispatch(getTrainerList());
-        } catch (err) {
-                console.log(err);
-        }
-       
-    }
+const TrainerList = ({trainer, key, index}) => {
 
     return (
-        <div>
-                 <p>AAAA</p>
+        <div class='root'>
+            <div class="container">
+                <div class="row">
+                    <div class="col s6 offset-s3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src='' alt='oy'></img>
+                            </div> 
+                            <div class="card-content">
+                                <span class="card-title">{trainer.name}</span>
+                                <ul>
+                                    <li>age: {trainer.age}</li>
+                                    <li>weight: {trainer.weight}</li>
+                                </ul>
+                                <p>{trainer.character}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
       
     );

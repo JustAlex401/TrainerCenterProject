@@ -11,6 +11,7 @@ import { setUserProfile } from './actions';
 export const Login = () => {
 
     const auth = useContext(AuthContext);
+    // const [profile, setProfile] = useState();
     const dispatch = useDispatch();
     let history = useHistory();
     const message = useMessage(); 
@@ -32,18 +33,17 @@ export const Login = () => {
 
     const loginHandler = async () => {
         try{
-            const data= await request('/api/auth/login', 'POST', {...form});
+            // setProfile(
+            const data = await request('/api/auth/login', 'POST', {...form});
+
             message("Login is successful!");
             console.log(data);
             
             auth.login(data.token, data.refresh_token, data.userId, data.role, data.login);
-            
-            // if(data.role === "user"){
-                // history.push('');
-            // }
-            // history.push('/userProfile');
 
-            dispatch(setUserProfile(data))
+            let copy = data;
+            
+            dispatch(setUserProfile(copy))
         }catch(e){
             console.log("error")
             console.log(e.message);
@@ -52,8 +52,8 @@ export const Login = () => {
 
     return (
         <div className="row" >
-        <div className="col s6 offset-s3 ">
-            <div className="card #4527a0 deep-purple darken-3">
+        <div className="col s6 offset-s3">
+            <div className="card #546e7a blue-grey darken-1">
                 <div className="card-content white-text">
                     <span className="card-title">Login</span>
                     <div>

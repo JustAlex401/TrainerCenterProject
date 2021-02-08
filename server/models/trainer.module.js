@@ -9,10 +9,21 @@ const trainerCr = (sequelize, Sequelize) => {
             primaryKey: true,
         },
 
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+
+        character: {
+            type: Sequelize.STRING(2056),
+            allowNull: false,
+        },
+
         age: {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
+
         weight: {
             type: Sequelize.INTEGER,
             allowNull: false,
