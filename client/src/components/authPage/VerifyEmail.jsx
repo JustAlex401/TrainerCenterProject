@@ -28,21 +28,21 @@ const VerEm = (props) => {
     }
     
     return (
-        <div className="row" >
-        <div className="col s2 offset-s3 ">
-            <div className="card #e53935 red darken-1">
-                <div className="card-content white-text">
-                    <h5>Verify email</h5>
-                </div>
-                <div className="card-action">
-                    <button className='btn' onClick={enterHandler} disabled={loading}>
-                        Submit
-                        <i class="material-icons right">send</i>
-                    </button>
+        <div class="row" >
+            <div class="col s2 offset-s5" style={{display: 'block', marginTop: '250px'}}>
+                <div class="card #9e9e9e grey" >
+                    <div class="card-content white-text">
+                        <h5>Verify email</h5>
+                    </div>
+                    <div class="card-action">
+                        <button class='btn' onClick={enterHandler} disabled={loading}>
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
     
     )
 }

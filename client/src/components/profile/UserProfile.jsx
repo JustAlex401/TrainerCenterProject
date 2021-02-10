@@ -21,25 +21,24 @@ const UserProfile = () => {
     useEffect(()=>{
       message(error);
       clearError();
-  }, [error, message, clearError]);
+    }, [error, message, clearError]);
 
     const logoutHandler = async (event) => {
-        event.preventDefault();
+      event.preventDefault();
 
-        try{
-          await request('api/auth/logout', 'POST', {userId: Cookies.get('id')}).then(data => {
-            console.log(data.message);
-            message(data.message);
-          });
-          
-        }catch (err){
-          message(err.message);
-        }
-
-        auth.logout();
-
-        history.push('/');
+      try{
+        await request('api/auth/logout', 'POST', {userId: Cookies.get('id')}).then(data => {
+          console.log(data.message);
+          message(data.message);
+        });
         
+      }catch (err){
+        message(err.message);
+      }
+
+      auth.logout();
+
+      history.push('/');
     }
 
     return ( 

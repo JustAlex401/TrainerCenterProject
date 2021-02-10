@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
-import VerEm from './VerifyEmail';
 
 
 export const Registration = () => {
@@ -37,32 +36,32 @@ export const Registration = () => {
     }
 
     return (
-        <div className="row" >
-        <div className="col s6 offset-s3 ">
-            <div className="card #4527a0 deep-purple darken-3">
-                <div className="card-content white-text">
-                    <span className="card-title">Registration</span>
+        <div class="row" >
+        <div class="col s5 offset-s4 ">
+            <div class="card #546e7a blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Registration</span>
                     <div>
 
-                        <div className="input-field">
-                            <input className="Inp" placeholder="Email" id="email" type="text" name='email' onChange={changeHandler}/>
+                        <div class="input-field">
+                            <input class="Inp" placeholder="Email" id="email" type="text" name='email' onChange={changeHandler}/>
                             <label for="email"></label>
                         </div>
 
-                        <div className="input-field">
-                            <input className="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler}/>
+                        <div class="input-field">
+                            <input class="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler}/>
                             <label for="login"></label>
                         </div>
 
-                        <div className="input-field">
-                            <input className="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler}/>
+                        <div class="input-field">
+                            <input class="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler}/>
                             <label for="password"></label>
                         </div>
 
                     </div>
                 </div>
-                <div className="card-action">
-                    <button className='btn' onClick={registerHandler} disabled={loading}>
+                <div class="card-action">
+                    <button class='btn' onClick={registerHandler} disabled={loading}>
                         Submit
                     </button>
                 </div>

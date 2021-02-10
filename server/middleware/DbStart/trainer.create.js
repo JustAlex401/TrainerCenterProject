@@ -10,8 +10,10 @@ const trainer = async function trainer (db){
         let trainerId;
 
         await db.trainer.create({
+            name: 'Alex',
+            character: 'Preparation of training programs for individuals and groups. Administrative work with the client base. Attraction of new clients. Demonstration and explanation of the exercise technique. Drawing up a meal plan (for personal clients). Conducting individual lessons on power shaping',
             age: 20,
-            weight: 90
+            weight: 90,
         },  { transaction: t }).then(data => {
             trainerId=data.dataValues.id;
         }).catch(err => {
