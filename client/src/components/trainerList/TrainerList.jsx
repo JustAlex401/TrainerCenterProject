@@ -1,18 +1,18 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 // import { useHttp } from '../../hooks/http.hook';
-import { getTrainerList } from './actions';
+// import { getTrainerList } from './actions';
 // import classnames from 'classnames';
 
 const TrainerList = ({trainer, key, index}) => {
 
     return (
-        <div class='root'>
+        <div class='trainerList'>
             <div class="container">
                 <div class="row">
                     <div class="col s6 offset-s3">
-                        <div class="card">
+                        <div class="card" style={{borderRadius: '20px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
                             <div class="card-image">
                                 <img src='' alt='oy'></img>
                             </div> 

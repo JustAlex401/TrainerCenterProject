@@ -29,20 +29,20 @@ const VerEm = (props) => {
     
     return (
         <div class="row" >
-        <div class="col s2 offset-s5 ">
-            <div class="card #9e9e9e grey" >
-                <div class="card-content white-text">
-                    <h5>Verify email</h5>
-                </div>
-                <div class="card-action">
-                    <button class='btn' onClick={enterHandler} disabled={loading}>
-                        Submit
-                        <i class="material-icons right">send</i>
-                    </button>
+            <div class="col s2 offset-s5" style={{display: 'block', marginTop: '250px'}}>
+                <div class="card #9e9e9e grey" >
+                    <div class="card-content white-text">
+                        <h5>Verify email</h5>
+                    </div>
+                    <div class="card-action">
+                        <button class='btn' onClick={enterHandler} disabled={loading}>
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
     
     )
 }

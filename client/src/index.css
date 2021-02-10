@@ -2,6 +2,7 @@
 
 body {
   background-image: url(https://i.pinimg.com/originals/fe/e5/46/fee54690963240994bf2b3c6342bc89a.jpg); /* Путь к фоновому изображению */
+  background-size: cover
   /* background-color: #c7b39b; Цвет фона */
  }
 
@@ -12,6 +13,14 @@ input.Inp {
 .brand-logo {
   margin-left: 10px;
 }
+
+/* .card {
+  border-radius: 20px;
+} */
+
+/* .col {
+  margin-top: 100px;
+} */
 
 /* span {
   color: green;

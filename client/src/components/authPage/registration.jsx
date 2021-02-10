@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
-import VerEm from './VerifyEmail';
 
 
 export const Registration = () => {
@@ -38,7 +37,7 @@ export const Registration = () => {
 
     return (
         <div class="row" >
-        <div class="col s6 offset-s3 ">
+        <div class="col s5 offset-s4 ">
             <div class="card #546e7a blue-grey darken-1">
                 <div class="card-content white-text">
                     <span class="card-title">Registration</span>
