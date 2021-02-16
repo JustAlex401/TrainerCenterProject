@@ -11,11 +11,10 @@ import { setUserProfile } from './actions';
 export const Login = () => {
 
     const auth = useContext(AuthContext);
-    // const [profile, setProfile] = useState();
     const dispatch = useDispatch();
-    let history = useHistory();
     const message = useMessage(); 
     const {loading, request, error, clearError} = useHttp();
+    const profile = useSelector((state) => state.user.data);
 
     const [form, setForm] = useState({
         login: '',
@@ -31,23 +30,12 @@ export const Login = () => {
         setForm({...form,[event.target.name]: event.target.value})
     }
 
+    useEffect(() => {
+        auth.login(profile.token, profile.refresh_token, profile.userId, profile.role, profile.login);
+    }, [profile])
+
     const loginHandler = async () => {
-        try{
-            // setProfile(
-            const data = await request('/api/auth/login', 'POST', {...form});
-
-            message("Login is successful!");
-            console.log(data);
-            
-            auth.login(data.token, data.refresh_token, data.userId, data.role, data.login);
-
-            let copy = data;
-            
-            dispatch(setUserProfile(copy))
-        }catch(e){
-            console.log("error")
-            console.log(e.message);
-        }
+        dispatch(setUserProfile({...form}));
     }
 
     return (

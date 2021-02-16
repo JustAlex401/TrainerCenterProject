@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -14,9 +14,16 @@ const UserProfile = () => {
     const auth = useContext(AuthContext);
     const {request, error, clearError} = useHttp();
     const message = useMessage(); 
+    const [profile, setProfile] = useState({});
     const login = useSelector((state) => {
       return state.user.data.login;
     })
+
+    useEffect(()=>{
+      setProfile({
+        
+      })
+    }, []);
 
     useEffect(()=>{
       message(error);
