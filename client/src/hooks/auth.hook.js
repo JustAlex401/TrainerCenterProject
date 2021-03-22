@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import {useState, useCallback} from 'react';
+import { useState, useCallback } from 'react';
 import Cookies from 'js-cookie';
+import { useDispatch } from "react-redux";
+import { logoutProfile } from '../components/authPage/login/actions'
 
 export const useAuth = () => {
     const [token, setToken] = useState(null);
@@ -8,6 +10,7 @@ export const useAuth = () => {
     const [userId , setUserId] = useState(null);
     const [role, setRole] = useState(null);
     const [loginU, setloginU] = useState(null);
+    const dispatch = useDispatch();
 
     const login = useCallback((jwtToken, refreshToken, id, role, login)=>{
         
@@ -40,6 +43,8 @@ export const useAuth = () => {
         Cookies.remove('id');
         Cookies.remove('role');
         Cookies.remove('login');
+
+        dispatch(logoutProfile());
 
     }, []);
 
