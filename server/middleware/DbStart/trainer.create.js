@@ -25,7 +25,7 @@ const trainer = async function trainer (db){
             login: "trainer",
             password: `${hashedPassword}`,
             active: 1,
-            role_id: 3,
+            roleId: 3,
             trainerId: trainerId,
         }, { transaction: t }).then(data => {
             // console.log(data)

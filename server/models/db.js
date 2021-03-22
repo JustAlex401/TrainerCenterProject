@@ -1,8 +1,8 @@
 const dbConfig = require('config');
 const Sequelize = require("sequelize");
 const {userCr} = require("./user.model");
-const {roleCr} = require("./role.module");
-const {trainerCr} = require('./trainer.module')
+const {roleCr} = require("./role.model");
+const {trainerCr} = require('./trainer.model')
 
 sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get("PASSWORD"),
     {
@@ -36,7 +36,7 @@ sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get
 
 
 db.trainer.hasOne(db.user);
-db.user.belongsTo(db.trainer);
+db.role.hasMany(db.user);
 
  module.exports = {
     db

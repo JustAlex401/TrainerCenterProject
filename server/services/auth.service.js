@@ -18,7 +18,7 @@ const registrationServ = async function registrationServ(regForm){
 
         regForm.password=hashedPassword;
         regForm.active=0;
-        regForm.role_id=2;
+        regForm.roleId=2;
 
         const user = await dal.registration(regForm);
         
