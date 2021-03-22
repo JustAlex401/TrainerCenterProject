@@ -10,8 +10,8 @@ import TrainerProfile from './components/profile/TrainerProfile';
 
 export const useRoutes = (isAuthenticated, role) => {
 
-    console.log(role);
-    console.log(isAuthenticated);
+    // console.log(role);
+    // console.log(isAuthenticated);
 
     return (
         <div className="NotAuthenticated">

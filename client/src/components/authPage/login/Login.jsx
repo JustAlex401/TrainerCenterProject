@@ -11,10 +11,11 @@ import { setUserProfile } from './actions';
 export const Login = () => {
 
     const auth = useContext(AuthContext);
+    const [messageError, setMessageError] = useState(null);
     const dispatch = useDispatch();
     const message = useMessage(); 
     const {loading, request, error, clearError} = useHttp();
-    const profile = useSelector((state) => state.user.data);
+    const profile = useSelector((state) => state.user);
 
     const [form, setForm] = useState({
         login: '',
@@ -31,10 +32,19 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        auth.login(profile.token, profile.refresh_token, profile.userId, profile.role, profile.login);
+        if(!profile.error){
+            auth.login(profile.data.token, profile.data.refresh_token, profile.data.userId, profile.data.role, profile.data.login);
+        } else {
+            setMessageError("Bad request")
+        }
     }, [profile])
 
+    useEffect(() => {
+        message(messageError);
+    }, [messageError])
+
     const loginHandler = async () => {
+        setMessageError(null);
         dispatch(setUserProfile({...form}));
     }
 

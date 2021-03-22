@@ -8,7 +8,7 @@ const admin = async function admin (db){
     login: `${config.get('adminLogin')}`,
     password: `${hashedPassword}`,
     active: 1,
-    role_id: 1
+    roleId: 1
   }).catch(err=> {
     console.log(err.message)
   });

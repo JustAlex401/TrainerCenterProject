@@ -10,18 +10,21 @@ export const useAuth = () => {
     const [loginU, setloginU] = useState(null);
 
     const login = useCallback((jwtToken, refreshToken, id, role, login)=>{
-        setToken(jwtToken);
-        setUserId(id);
-        setRefresh(refreshToken);
-        setRole(role);
-        setloginU(login);
-        console.log(jwtToken+ "   "+refreshToken+ "   "+ id);
+        
+        if(login !== undefined){
+            setToken(jwtToken);
+            setUserId(id);
+            setRefresh(refreshToken);
+            setRole(role);
+            setloginU(login);
+            console.log(jwtToken+ "   "+refreshToken+ "   "+ id);
 
-        Cookies.set("token", jwtToken);
-        Cookies.set("refreshToken", refreshToken);
-        Cookies.set("id", id);
-        Cookies.set("role", role);
-        Cookies.set("login", login);
+            Cookies.set("token", jwtToken);
+            Cookies.set("refreshToken", refreshToken);
+            Cookies.set("id", id);
+            Cookies.set("role", role);
+            Cookies.set("login", login);
+        }
 
     }, []);
 

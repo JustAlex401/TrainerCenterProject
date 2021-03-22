@@ -31,6 +31,8 @@ const registration = async function registration(req, res, next){
 const login = async function login(req, res, next){
 
     try{
+
+        console.log(req.body)
         const errors = validationResult(req);
 
         if(!errors.isEmpty()){

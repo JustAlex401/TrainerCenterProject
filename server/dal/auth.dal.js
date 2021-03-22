@@ -32,7 +32,7 @@ const login = async function login(loginForm){
 
         const role = await Role.findOne({
             where: {
-                id: user.role_id,
+                id: user.roleId,
             }
         });
         

@@ -46,14 +46,14 @@ const userCr = (sequelize, Sequelize) => {
               defaultValue: 0,
           },
 
-        role_id: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-              model: 'roles',
-              key: 'id',
-            }
-        },
+        // role_id: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //       model: 'roles',
+        //       key: 'id',
+        //     }
+        // },
 
       //   trainer_id: {
       //     type: Sequelize.INTEGER,
