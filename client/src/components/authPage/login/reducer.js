@@ -1,4 +1,4 @@
-import { SET_USER_PROFILE, SET_USER_PROFILE_FAILURE, SET_USER_PROFILE_SUCCESS } from "./constants";
+import { SET_USER_PROFILE, SET_USER_PROFILE_FAILURE, SET_USER_PROFILE_SUCCESS, LOGOUT_PROFILE } from "./constants";
 
 const initialState = {
     loading: false,
@@ -26,6 +26,13 @@ export function userReducer (state=initialState, action) {
                 ...state,
                 loading: false,
                 error: action.payload
+            };
+        case LOGOUT_PROFILE:
+            return{
+                ...state,
+                loading: false, 
+                error: null,
+                data: {}
             };
         default: return state;
     }
