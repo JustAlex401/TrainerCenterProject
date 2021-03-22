@@ -7,10 +7,12 @@ import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { setUserProfileRedux } from '../authPage/login/actions';
 
 const AdminProfile = () => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
     const login = useSelector((state) => {
       return state.user.data.login;
     })
@@ -21,7 +23,17 @@ const AdminProfile = () => {
     useEffect(()=>{
       message(error);
       clearError();
-  }, [error, message, clearError]);
+    }, [error, message, clearError]);
+    
+    useEffect(() => {
+      dispatch(setUserProfileRedux({
+        userId: parseInt(auth.userId),
+        token: auth.token,
+        refreshToken: auth.refreshToken,
+        role: auth.role,
+        login: auth.loginU,
+      }))
+    }, []);
 
     const logoutHandler = async (event) => {
         event.preventDefault();

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import { useHttp } from '../../../hooks/http.hook';
 import { useMessage } from '../../../hooks/message.hook';
@@ -35,6 +34,12 @@ export const Login = () => {
         if(!profile.error){
             auth.login(profile.data.token, profile.data.refresh_token, profile.data.userId, profile.data.role, profile.data.login);
         } else {
+            setMessageError("Bad request")
+        }
+    }, [profile])
+
+    useEffect(() => {
+        if(profile.error){
             setMessageError("Bad request")
         }
     }, [profile])
