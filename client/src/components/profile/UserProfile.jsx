@@ -6,7 +6,8 @@ import Cookies from 'js-cookie';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserProfileRedux } from '../authPage/login/actions';
 
 const UserProfile = () => {
 
@@ -14,15 +15,19 @@ const UserProfile = () => {
     const auth = useContext(AuthContext);
     const {request, error, clearError} = useHttp();
     const message = useMessage(); 
-    const [profile, setProfile] = useState({});
+    const dispatch = useDispatch();
     const login = useSelector((state) => {
       return state.user.data.login;
     })
 
-    useEffect(()=>{
-      setProfile({
-        
-      })
+    useEffect(() => {
+      dispatch(setUserProfileRedux({
+        userId: parseInt(auth.userId),
+        token: auth.token,
+        refreshToken: auth.refreshToken,
+        role: auth.role,
+        login: auth.loginU,
+      }))
     }, []);
 
     useEffect(()=>{

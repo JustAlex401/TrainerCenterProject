@@ -6,17 +6,29 @@ import Cookies from 'js-cookie';
 import { useHttp } from '../../hooks/http.hook';
 import { useMessage } from '../../hooks/message.hook';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserProfileRedux } from '../authPage/login/actions';
 
 const TrainerProfile = () => {
 
     const history = useHistory();
     const auth = useContext(AuthContext);
     const {request, error, clearError} = useHttp();
+    const dispatch = useDispatch();
     const message = useMessage(); 
     const login = useSelector((state) => {
       return state.user.data.login;
     })
+
+    useEffect(() => {
+      dispatch(setUserProfileRedux({
+        userId: parseInt(auth.userId),
+        token: auth.token,
+        refreshToken: auth.refreshToken,
+        role: auth.role,
+        login: auth.loginU,
+      }))
+    }, []);
 
     useEffect(()=>{
       message(error);

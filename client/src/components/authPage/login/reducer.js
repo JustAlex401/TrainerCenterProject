@@ -1,4 +1,4 @@
-import { SET_USER_PROFILE, SET_USER_PROFILE_FAILURE, SET_USER_PROFILE_SUCCESS, LOGOUT_PROFILE } from "./constants";
+import { SET_USER_PROFILE, SET_USER_PROFILE_FAILURE, SET_USER_PROFILE_SUCCESS, LOGOUT_PROFILE, SET_USER_PROFILE_REDUX_FOR_REDIRECT } from "./constants";
 
 const initialState = {
     loading: false,
@@ -33,6 +33,13 @@ export function userReducer (state=initialState, action) {
                 loading: false, 
                 error: null,
                 data: {}
+            };
+        case SET_USER_PROFILE_REDUX_FOR_REDIRECT:
+            return{
+                ...state,
+                loading: false, 
+                error: null,
+                data: action.payload
             };
         default: return state;
     }

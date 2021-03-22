@@ -7,7 +7,7 @@ import { logoutProfile } from '../components/authPage/login/actions'
 export const useAuth = () => {
     const [token, setToken] = useState(null);
     const [refreshToken, setRefresh] = useState(null);
-    const [userId , setUserId] = useState(null);
+    const [userId , setUserId] = useState(0);
     const [role, setRole] = useState(null);
     const [loginU, setloginU] = useState(null);
     const dispatch = useDispatch();
@@ -20,7 +20,6 @@ export const useAuth = () => {
             setRefresh(refreshToken);
             setRole(role);
             setloginU(login);
-            console.log(jwtToken+ "   "+refreshToken+ "   "+ id);
 
             Cookies.set("token", jwtToken);
             Cookies.set("refreshToken", refreshToken);
