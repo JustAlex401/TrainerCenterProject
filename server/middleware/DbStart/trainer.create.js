@@ -1,13 +1,13 @@
-const config = require('config');
 const bcrypt = require('bcrypt');
 
 const trainer = async function trainer (db){
   const hashedPassword = await bcrypt.hash("trainer", 12);
 
   const t = await db.sequelize.transaction();
-    try{
 
-        let trainerId;
+    let trainerId;
+
+    try{
 
         await db.trainer.create({
             name: 'Alex',
@@ -16,8 +16,6 @@ const trainer = async function trainer (db){
             weight: 90,
         },  { transaction: t }).then(data => {
             trainerId=data.dataValues.id;
-        }).catch(err => {
-            console.log(err.message);
         })
 
         await db.user.create({
@@ -27,16 +25,11 @@ const trainer = async function trainer (db){
             active: 1,
             roleId: 3,
             trainerId: trainerId,
-        }, { transaction: t }).then(data => {
-            // console.log(data)
-        }).catch(err=> {
-            console.log(err.message)
-        });
+        }, { transaction: t });
 
         await t.commit();
 
     } catch (err) {
-        console.log(err.message);
         await t.rollback();
     }
 }

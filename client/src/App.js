@@ -10,7 +10,6 @@ import { useRoutes } from './routes';
 function App() {
   
   const {login, logout, token, userId, refreshToken, role, loginU} = useAuth();
-  console.log(token);
   let isAuthenticated = !!token || !!refreshToken;
   const routes = useRoutes(isAuthenticated, role);
 

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import { getTrainerList } from '../trainerList/actions';
 import TrainerList from '../trainerList/TrainerList';
 import './header.css';
 
 const Header = () =>{
-  const [list, setList] = useState(true);
+  const [list, setList] = useState(false);
   const trainerList = useSelector((state) => state.trainerList.data);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
-    // console.log("AAAA")
-    // setList(true)
+    console.log(location.pathname)
+    if(location.pathname === '/'){
+      setList(true);
+    }
     dispatch(getTrainerList());
-    // fetchData();
   }, []);
 
     return (
@@ -33,7 +35,7 @@ const Header = () =>{
         </div>  
 
         {list && 
-          <div class="col">
+          <div className="col">
             {
               trainerList.map((trainer, i) => {
                 return (

@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom';
-import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
+import { useHttp } from '../../../hooks/http.hook';
+import { useMessage } from '../../../hooks/messages/message.hook';
 import React, {useEffect} from 'react';
+import './verifyEmail.css';
 
 const VerEm = (props) => {
 
@@ -28,21 +29,22 @@ const VerEm = (props) => {
     }
     
     return (
-        <div class="row" >
-            <div class="col s2 offset-s5" style={{display: 'block', marginTop: '250px'}}>
-                <div class="card #9e9e9e grey" >
-                    <div class="card-content white-text">
+        <div className="rootVer">
+            <div className="col containerVerify">
+                <div className="card #9e9e9e grey verify" >
+                    <div className="card-content white-text center-align">
                         <h5>Verify email</h5>
                     </div>
-                    <div class="card-action">
-                        <button class='btn' onClick={enterHandler} disabled={loading}>
+                    <div className="card-action center-align button">
+                        <button className='btn' onClick={enterHandler} disabled={loading}>
                             Submit
-                            <i class="material-icons right">send</i>
+                            <i className="material-icons right">send</i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+        
     
     )
 }

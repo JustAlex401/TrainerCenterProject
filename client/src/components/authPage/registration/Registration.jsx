@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useHttp } from '../../../hooks/http.hook';
-import { useMessage } from '../../../hooks/message.hook';
+import { useMessage } from '../../../hooks/messages/message.hook';
 import './registration.css';
 
 
@@ -37,32 +37,32 @@ export const Registration = () => {
     }
 
     return (
-        <div class="containerReg">
-            <div class="col center-align">
-                <div class="card #546e7a blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">Registration</span>
+        <div className="containerReg">
+            <div className="col center-align">
+                <div className="card #546e7a blue-grey darken-1 registration">
+                    <div className="card-content white-text">
+                        <span className="card-title">Registration</span>
                         <div>
 
-                            <div class="input-field">
-                                <input class="Inp" placeholder="Email" id="email" type="text" name='email' onChange={changeHandler} autoComplete='off'/>
+                            <div className="input-field">
+                                <input className="Inp" placeholder="Email" id="email" type="text" name='email' onChange={changeHandler} autoComplete='off'/>
                                 <label for="email"></label>
                             </div>
 
-                            <div class="input-field">
-                                <input class="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler} autoComplete='off'/>
+                            <div className="input-field">
+                                <input className="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler} autoComplete='off'/>
                                 <label for="login"></label>
                             </div>
 
-                            <div class="input-field">
-                                <input class="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler} autoComplete='off'/>
+                            <div className="input-field">
+                                <input className="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler} autoComplete='off'/>
                                 <label for="password"></label>
                             </div>
 
                         </div>
                     </div>
-                    <div class="card-action">
-                        <button class='btn' onClick={registerHandler} disabled={loading}>
+                    <div className="card-action">
+                        <button className='btn' onClick={registerHandler} disabled={loading}>
                             Submit
                         </button>
                     </div>

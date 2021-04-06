@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import Cookies from 'js-cookie';
 import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
+import { useMessage } from '../../hooks/messages/message.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setUserProfileRedux } from '../authPage/login/actions';
@@ -43,6 +43,8 @@ const AdminProfile = () => {
             console.log(data.message);
             message(data.message);
           });
+
+          history.push('/');
           
         }catch (err){
           message(err.message);
@@ -57,9 +59,9 @@ const AdminProfile = () => {
     return ( 
         <nav>
         
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">{login}</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <div className="nav-wrapper">
+          <a href="#" className="brand-logo">{login}</a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><a href="/" onClick={logoutHandler}>logout</a></li>
           </ul>
         </div>

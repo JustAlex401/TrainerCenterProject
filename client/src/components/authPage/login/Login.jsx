@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useHttp } from '../../../hooks/http.hook';
-import { useMessage } from '../../../hooks/message.hook';
+import { useMessage } from '../../../hooks/messages/message.hook';
 import { useDispatch, useSelector } from "react-redux";
 import { setUserProfile } from './actions';
 import './login.css';
@@ -54,9 +54,9 @@ export const Login = () => {
     }
 
     return (
-        <div class="containerReg">
+        <div className="containerReg">
             <div className="col center-align">
-                <div className="card #546e7a blue-grey darken-1">
+                <div className="card #546e7a blue-grey darken-1 login">
                     <div className="card-content white-text">
                         <span className="card-title">Login</span>
                         <div>

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Cookies from 'js-cookie';
 import { useHttp } from '../../../hooks/http.hook';
-import { useMessage } from '../../../hooks/message.hook';
+import { useMessage } from '../../../hooks/messages/message.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserProfileRedux } from '../../authPage/login/actions';
@@ -52,6 +52,8 @@ const UserProfile = () => {
           console.log(data.message);
           message(data.message);
         });
+
+        history.push('/');
         
       }catch (err){
         message(err.message);

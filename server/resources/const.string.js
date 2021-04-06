@@ -2,7 +2,7 @@
 const message = {
     usCr : "User was created",
     act: "User was activated",
-    logout: "User logout"
+    logout: "Logout was successful"
 }
 
 module.exports=message;
