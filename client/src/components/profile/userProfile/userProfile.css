@@ -1,0 +1,13 @@
+
+.brand-logo {
+    margin-left: 60px;
+}
+
+.sidenav-trigger{
+    padding-top: 5px;
+}
+
+.logoutUserProfile:hover {
+    transform: scale(1.2);
+    transition: all 1s;
+}

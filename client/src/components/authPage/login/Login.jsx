@@ -5,7 +5,7 @@ import { useHttp } from '../../../hooks/http.hook';
 import { useMessage } from '../../../hooks/message.hook';
 import { useDispatch, useSelector } from "react-redux";
 import { setUserProfile } from './actions';
-
+import './login.css';
 
 export const Login = () => {
 
@@ -54,33 +54,34 @@ export const Login = () => {
     }
 
     return (
-        <div className="row" >
-        <div className="col s6 offset-s3">
-            <div className="card #546e7a blue-grey darken-1">
-                <div className="card-content white-text">
-                    <span className="card-title">Login</span>
-                    <div>
+        <div class="containerReg">
+            <div className="col center-align">
+                <div className="card #546e7a blue-grey darken-1">
+                    <div className="card-content white-text">
+                        <span className="card-title">Login</span>
+                        <div>
 
-                        <div className="input-field">
-                            <input className="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler}/>
-                            <label for="login"></label>
+                            <div className="input-field">
+                                <input className="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler} autoComplete='off'/>
+                                <label for="login"></label>
+                            </div>
+
+                            <div className="input-field">
+                                <input className="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler} autoComplete='off'/>
+                                <label for="password"></label>
+                            </div>
+
                         </div>
-
-                        <div className="input-field">
-                            <input className="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler}/>
-                            <label for="password"></label>
-                        </div>
-
                     </div>
-                </div>
-                <div className="card-action">
-                    <button className='btn' onClick={loginHandler} disabled={loading}>
-                        Submit
-                    </button>
+                    <div className="card-action">
+                        <button className='btn' onClick={loginHandler} disabled={loading}>
+                            Submit
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
+        
     
     )
 }
