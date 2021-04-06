@@ -4,7 +4,7 @@ import { Login } from './components/authPage/login/Login';
 import { Registration } from './components/authPage/registration/Registration';
 import VerEm from './components/authPage/VerifyEmail';
 import Header from './components/header/Header';
-import UserProfile from './components/profile/UserProfile';
+import UserProfile from './components/profile/userProfile/UserProfile';
 import AdminProfile from './components/profile/AdminProfile';
 import TrainerProfile from './components/profile/TrainerProfile';
 

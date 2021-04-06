@@ -1,0 +1,25 @@
+nav {
+    background-color: rgba(0, 0, 0, 0)!important;
+}
+
+.brand-logo {
+    font-size: 100%;
+}
+
+.headerText {
+    font-size: 100%;
+}
+
+.brand-logo:hover {
+    transform: scale(1.2);
+    transition: all 1s;
+}
+
+.headerText:hover {
+    transform: scale(1.2);
+    transition: all 1s;
+}
+
+.right {
+    margin-right: 60px;
+}

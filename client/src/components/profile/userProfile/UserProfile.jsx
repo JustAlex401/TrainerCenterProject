@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
 import Cookies from 'js-cookie';
-import { useHttp } from '../../hooks/http.hook';
-import { useMessage } from '../../hooks/message.hook';
+import { useHttp } from '../../../hooks/http.hook';
+import { useMessage } from '../../../hooks/message.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserProfileRedux } from '../authPage/login/actions';
+import { setUserProfileRedux } from '../../authPage/login/actions';
+import './userProfile.css';
+import M from 'materialize-css';
 
 const UserProfile = () => {
 
@@ -19,6 +21,13 @@ const UserProfile = () => {
     const login = useSelector((state) => {
       return state.user.data.login;
     })
+    const slide_menu = document.querySelectorAll(".sidenav");
+    M.Sidenav.init(slide_menu, {
+      // menuWidth: 300, // Default is 240
+      // edge: 'right', // Choose the horizontal origin
+      // closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    });
+
 
     useEffect(() => {
       dispatch(setUserProfileRedux({
@@ -54,15 +63,23 @@ const UserProfile = () => {
     }
 
     return ( 
-        <nav>
-        
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">{login}</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/" onClick={logoutHandler}>logout</a></li>
-          </ul>
-        </div>
-      </nav>
+      <div>
+        <nav> 
+          <div className="nav-wrapper">
+            <a href="#" className="brand-logo">{login}</a>
+            <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <ul id="slide-out" className="sidenav">
+          <li><a href="#!">First Link With Icon</a></li>
+          <li><a href="#!">Second Link</a></li>
+          <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+      </div>
     )
 }
 

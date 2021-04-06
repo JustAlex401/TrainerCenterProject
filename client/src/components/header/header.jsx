@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { getTrainerList } from '../trainerList/actions';
 import TrainerList from '../trainerList/TrainerList';
+import './header.css';
 
 const Header = () =>{
   const [list, setList] = useState(true);
@@ -20,11 +21,11 @@ const Header = () =>{
       <div className="root">
         <div className="row">
           <nav className="header">
-            <div className="nav-wrapper #546e7a blue-grey darken-1">
-              <a href="/" className="brand-logo #546e7a blue-grey darken-1" >Fitness</a>
-              <ul id="nav-mobile" className="right hide-on-med-and-down #546e7a blue-grey darken-1">
-                <li><Link to='/signUp' onClick={() => setList(false)}>sign up</Link></li>
-                <li><Link to='/signIn' onClick={() => setList(false)}>sign in</Link></li>
+            <div className="nav-wrapper">
+              <a href="/" className="brand-logo">Fitness</a>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><Link to='/signUp' onClick={() => setList(false)} className="headerText">sign up</Link></li>
+                <li><Link to='/signIn' onClick={() => setList(false)} className="headerText">sign in</Link></li>
               </ul>
             </div>
           </nav>
