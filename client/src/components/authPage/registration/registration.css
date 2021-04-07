@@ -9,3 +9,22 @@
     background-color: rgba(0, 0, 0, 0)!important;
     border-radius: 20px;
 }
+
+.btn {
+    background-color: #FFD700;
+    color: black;
+    font-weight: 600;
+}
+
+.Inp:focus {
+    border-bottom: 1px solid #FFD700 !important;
+    box-shadow: 0 1px 0 0 #FFD700 !important;
+}
+
+.btn:focus {
+    background-color: #DAA520;
+}
+
+.btn:hover {
+    background-color: #DAA520;
+}
