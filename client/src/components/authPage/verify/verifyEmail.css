@@ -16,3 +16,17 @@
 i.right {
     margin-right: 0;
 }
+
+.btn {
+    background-color: #FFD700;
+    color: black;
+    font-weight: 600;
+}
+
+.btn:focus {
+    background-color: #DAA520;
+}
+
+.btn:hover {
+    background-color: #DAA520;
+}
