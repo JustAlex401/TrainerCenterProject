@@ -2,7 +2,9 @@
 
 body {
   background-image: url(utils/images/picture5.jpg); /* Путь к фоновому изображению */
-  background-size: cover
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
  }
 
 input.Inp {

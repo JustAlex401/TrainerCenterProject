@@ -35,7 +35,7 @@ const Header = () =>{
         </div>  
 
         {list && 
-          <div className="col">
+          <div className="colTrainerList">
             {
               trainerList.map((trainer, i) => {
                 return (
