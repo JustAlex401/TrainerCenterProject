@@ -11,3 +11,29 @@
     transform: scale(1.2);
     transition: all 1s;
 }
+
+.sidenav {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.75);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 300px;
+}
+
+.menuStyle {
+    text-align: center;
+    color: #FFD700;
+    font-family: "Audiowide", sans-serif;
+}
+
+.aText {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.sidenav li>a {
+    color: #FFD700;
+}
