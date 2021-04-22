@@ -68,7 +68,7 @@ const UserProfile = () => {
       <div>
         <nav> 
           <div className="nav-wrapper">
-            <a href="#" className="brand-logo">{login}</a>
+            <a href="/" className="brand-logo">{login}</a>
             <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
@@ -77,9 +77,12 @@ const UserProfile = () => {
         </nav>
 
         <ul id="slide-out" className="sidenav">
-          <li><a href="#!">First Link With Icon</a></li>
-          <li><a href="#!">Second Link</a></li>
-          <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
+          <div>
+            <h4 className="menuStyle">Menu</h4>
+            <li><div class="divider"></div></li>
+          </div>
+            <li><a className='aText'>Second Link</a></li> 
+            <li><a className='aText'>Get calories for you</a></li>
         </ul>
       </div>
     )
