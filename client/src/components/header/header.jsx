@@ -19,41 +19,37 @@ const Header = () =>{
     dispatch(getTrainerList());
   }, []);
 
-    return (
-      <div className="root">
-        <div className="row">
-          <nav className="header">
-            <div className="nav-wrapper">
-              <a href="/" className="brand-logo">Fitness</a>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><Link to='/sign-up' onClick={() => setList(false)} className="headerText">sign up</Link></li>
-                <li><Link to='/sign-in' onClick={() => setList(false)} className="headerText">sign in</Link></li>
-              </ul>
-            </div>
-          </nav>
-          
-        </div>  
-
-        {list && 
-          <div className="colTrainerList">
-            {
-              trainerList.map((trainer, i) => {
-                return (
-                  <TrainerList 
-                    trainer={trainer}
-                    key={i}
-                    index={i}
-                  />
-                )
-              })
-            }
-            
+  return (
+    <div className="root">
+      <div className="row">
+        <nav className="header">
+          <div className="nav-wrapper">
+            <a href="/" className="brand-logo">Fitness</a>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li><Link to='/sign-up' onClick={() => setList(false)} className="headerText">sign up</Link></li>
+              <li><Link to='/sign-in' onClick={() => setList(false)} className="headerText">sign in</Link></li>
+            </ul>
           </div>
-        } 
-          
-      </div>
+        </nav>
         
-    );
+      </div>  
+
+      {list && 
+        <div className="colTrainerList">
+          {
+            trainerList.map((trainer, i) => {
+              return (
+                <TrainerList 
+                  trainer={trainer}
+                  key={i}
+                  index={i}
+                />
+              )})
+          }
+        </div>
+      } 
+    </div>
+  );
 }
 
 export default Header;
