@@ -1,0 +1,25 @@
+.rootListCalories {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.validate:focus {
+    /* color: white; */
+    border-bottom: 1px solid #FFD700 !important;
+    box-shadow: 0 1px 0 0 #FFD700 !important;
+}
+
+.input-field .prefix.active {
+    /* border-bottom: 1px solid #FFD700 !important;
+    box-shadow: 0 1px 0 0 #FFD700 !important; */
+    color: #FFD700
+}
+
+.material-icons {
+    color: white;
+}
+
+input {
+    color: white;
+}

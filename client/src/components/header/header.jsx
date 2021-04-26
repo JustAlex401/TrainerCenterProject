@@ -26,8 +26,8 @@ const Header = () =>{
             <div className="nav-wrapper">
               <a href="/" className="brand-logo">Fitness</a>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><Link to='/signUp' onClick={() => setList(false)} className="headerText">sign up</Link></li>
-                <li><Link to='/signIn' onClick={() => setList(false)} className="headerText">sign in</Link></li>
+                <li><Link to='/sign-up' onClick={() => setList(false)} className="headerText">sign up</Link></li>
+                <li><Link to='/sign-in' onClick={() => setList(false)} className="headerText">sign in</Link></li>
               </ul>
             </div>
           </nav>

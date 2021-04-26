@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, BrowserRouter as Router, Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Cookies from 'js-cookie';
 import { useHttp } from '../../../hooks/http.hook';
@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserProfileRedux } from '../../authPage/login/actions';
 import './userProfile.css';
 import M from 'materialize-css';
+import CaloriesForUser from './pagesForUser/caloriesForUser/CaloriesForUser';
+import ListOfCalories from './pagesForUser/listOfCalories/ListOfCalories';
+import TrainingProgramm from './pagesForUser/trainingProgramm/TrainingProgramm';
 
 const UserProfile = () => {
 
@@ -18,16 +21,15 @@ const UserProfile = () => {
     const {request, error, clearError} = useHttp();
     const message = useMessage(); 
     const dispatch = useDispatch();
+    const [menuItem, setMenuItem] = useState();
     const login = useSelector((state) => {
       return state.user.data.login;
     })
-    const slide_menu = document.querySelectorAll(".sidenav");
-    M.Sidenav.init(slide_menu, {
-      // menuWidth: 300, // Default is 240
-      // edge: 'right', // Choose the horizontal origin
-      // closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    });
 
+    useEffect(() => {
+      const slide_menu = document.querySelectorAll(".sidenav");
+      M.Sidenav.init(slide_menu);
+    }, [])
 
     useEffect(() => {
       dispatch(setUserProfileRedux({
@@ -47,6 +49,7 @@ const UserProfile = () => {
     const logoutHandler = async (event) => {
       event.preventDefault();
 
+      history.push('/');
       try{
         await request('api/auth/logout', 'POST', {userId: Cookies.get('id')}).then(data => {
           console.log(data.message);
@@ -60,31 +63,53 @@ const UserProfile = () => {
       }
 
       auth.logout();
-
-      history.push('/');
     }
 
-    return ( 
-      <div>
-        <nav> 
-          <div className="nav-wrapper">
-            <a href="/" className="brand-logo">{login}</a>
-            <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
-            </ul>
-          </div>
-        </nav>
+    const getMenu = () => {
 
-        <ul id="slide-out" className="sidenav">
-          <div>
+      return (
+        <ul id="slide-out" className="sidenav sidenav-close">
+          <div style={{marginBottom: '50px'}}>
             <h4 className="menuStyle">Menu</h4>
             <li><div class="divider"></div></li>
           </div>
-            <li><a className='aText'>Second Link</a></li> 
-            <li><a className='aText'>Get calories for you</a></li>
+            <li><Link to={`${window.location.pathname}/list-of-calories`} className='aText'>List of calories</Link></li> 
+            <li><Link to={`${window.location.pathname}/calories-for-you`} className='aText'>Calories for you</Link></li> 
+            <li><Link to={`${window.location.pathname}/training-programm`} className='aText'>Training programm</Link></li> 
         </ul>
-      </div>
+      )
+    }
+
+    return ( 
+      <Router>
+        <div>
+          <nav> 
+            <div className="nav-wrapper">
+              <a href="/" className="brand-logo">{login}</a>
+              <a href="/" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          {getMenu()}
+
+          <Switch>
+            <Route path={`${window.location.pathname}/list-of-calories`}>
+              <ListOfCalories/>  
+            </Route>
+            <Route path={`${window.location.pathname}/calories-for-you`}>
+              <CaloriesForUser/>
+            </Route>
+            <Route path={`${window.location.pathname}/training-programm`}>
+              <TrainingProgramm/>
+            </Route>
+          </Switch>
+        </div>
+     
+
+      </Router>
     )
 }
 

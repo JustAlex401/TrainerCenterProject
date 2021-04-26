@@ -21,24 +21,24 @@ export const useRoutes = (isAuthenticated, role) => {
           <Switch>
               {isAuthenticated && role === "user" && (
                   <div>
-                    <Route exact path='/userProfile' component={UserProfile}/> 
-                    <Redirect to="/userProfile"/>
+                    <Route exact path='/user-profile' component={UserProfile}/> 
+                    <Redirect to="/user-profile"/>
                   </div>
               )}
               {isAuthenticated && role === "admin" && (
                   <div>
-                    <Route exact path='/adminProfile' component={AdminProfile}/> 
-                    <Redirect to="/adminProfile"/>
+                    <Route exact path='/admin-profile' component={AdminProfile}/> 
+                    <Redirect to="/admin-profile"/>
                   </div>
               )}
               {isAuthenticated && role === "trainer" && (
                   <div>
-                    <Route exact path='/trainerProfile' component={TrainerProfile}/> 
-                    <Redirect to="/trainerProfile"/>
+                    <Route exact path='/trainer-profile' component={TrainerProfile}/> 
+                    <Redirect to="/trainer-profile"/>
                   </div>
               )}
-            <Route exact path='/signUp' component={Registration}/>
-            <Route exact path='/signIn' component={Login}/>
+            <Route exact path='/sign-up' component={Registration}/>
+            <Route exact path='/sign-in' component={Login}/>
             <Route exact path='/api/auth/activate' component={VerEm}/>
             <Redirect to="/"/>
           </Switch>
