@@ -25,6 +25,6 @@ nav {
 }
 
 .colTrainerList {
-    max-height: 850px;
+    max-height: 680px;
     overflow: auto;
 }
