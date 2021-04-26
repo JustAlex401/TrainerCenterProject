@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const TrainingProgramm = ({menuItem}) => {
+const TrainingProgramm = () => {
 
     return ( 
       <div>
-        <p>{menuItem}</p>
+        <p></p>
       </div>
     )
 }

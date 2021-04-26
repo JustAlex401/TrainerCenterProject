@@ -73,9 +73,9 @@ const UserProfile = () => {
             <h4 className="menuStyle">Menu</h4>
             <li><div class="divider"></div></li>
           </div>
-            <li><Link to={`${window.location.pathname}/calories-for-user`} className='aText'>List of calories</Link></li> 
-            {/* <li><Link className='aText' onClick={()=>{setMenuItem(2)}}>Get calories for you</Link></li>
-            <li><Link className='aText' onClick={()=>{setMenuItem(3)}}>Create your training programm</Link></li> */}
+            <li><Link to={`${window.location.pathname}/list-of-calories`} className='aText'>List of calories</Link></li> 
+            <li><Link to={`${window.location.pathname}/calories-for-you`} className='aText'>Calories for you</Link></li> 
+            <li><Link to={`${window.location.pathname}/training-programm`} className='aText'>Training programm</Link></li> 
         </ul>
       )
     }
@@ -96,10 +96,15 @@ const UserProfile = () => {
           {getMenu()}
 
           <Switch>
-            <Route path={`${window.location.pathname}/calories-for-user`}>
-              <CaloriesForUser></CaloriesForUser>  
+            <Route path={`${window.location.pathname}/list-of-calories`}>
+              <ListOfCalories/>  
             </Route>
-
+            <Route path={`${window.location.pathname}/calories-for-you`}>
+              <CaloriesForUser/>
+            </Route>
+            <Route path={`${window.location.pathname}/training-programm`}>
+              <TrainingProgramm/>
+            </Route>
           </Switch>
         </div>
      
