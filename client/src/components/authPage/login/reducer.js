@@ -27,13 +27,13 @@ export function userReducer (state=initialState, action) {
                 loading: false,
                 error: action.payload
             };
-        // case LOGOUT_PROFILE:
-        //     return{
-        //         ...state,
-        //         loading: false, 
-        //         error: null,
-        //         data: {}
-        //     };
+        case LOGOUT_PROFILE:
+            return{
+                ...state,
+                loading: false, 
+                error: null,
+                data: {}
+            };
         case SET_USER_PROFILE_REDUX_FOR_REDIRECT:
             return{
                 ...state,
