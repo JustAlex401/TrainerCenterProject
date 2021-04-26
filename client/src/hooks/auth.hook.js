@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState, useCallback } from 'react';
 import Cookies from 'js-cookie';
 import { useDispatch } from "react-redux";
-import { logoutProfile } from '../components/authPage/login/actions'
+// import { logoutProfile } from '../components/authPage/login/actions'
 
 export const useAuth = () => {
     const [token, setToken] = useState(null);
@@ -43,7 +43,7 @@ export const useAuth = () => {
         Cookies.remove('role');
         Cookies.remove('login');
 
-        dispatch(logoutProfile());
+        // dispatch(logoutProfile());
 
     }, []);
 

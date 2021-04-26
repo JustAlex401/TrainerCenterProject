@@ -49,6 +49,7 @@ const UserProfile = () => {
     const logoutHandler = async (event) => {
       event.preventDefault();
 
+      history.push('/');
       try{
         await request('api/auth/logout', 'POST', {userId: Cookies.get('id')}).then(data => {
           console.log(data.message);
@@ -62,14 +63,12 @@ const UserProfile = () => {
       }
 
       auth.logout();
-
-      history.push('/');
     }
 
     const getMenu = () => {
 
       return (
-        <ul id="slide-out" className="sidenav">
+        <ul id="slide-out" className="sidenav sidenav-close">
           <div style={{marginBottom: '50px'}}>
             <h4 className="menuStyle">Menu</h4>
             <li><div class="divider"></div></li>
@@ -94,15 +93,17 @@ const UserProfile = () => {
             </div>
           </nav>
 
+          {getMenu()}
+
           <Switch>
-             {/* TODO continue work with path for correct work page and also logout */}
-            <Route exact path={`${window.location.pathname}/calories-for-user`}>
-              <CaloriesForUser menuItem={menuItem}></CaloriesForUser>  
+            <Route path={`${window.location.pathname}/calories-for-user`}>
+              <CaloriesForUser></CaloriesForUser>  
             </Route>
+
           </Switch>
         </div>
      
-        {getMenu()}
+
       </Router>
     )
 }

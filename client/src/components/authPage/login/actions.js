@@ -7,11 +7,11 @@ export function setUserProfile (data) {
     }
 }
 
-export function logoutProfile () {
-    return {
-        type: LOGOUT_PROFILE,
-    }
-}
+// export function logoutProfile () {
+//     return {
+//         type: LOGOUT_PROFILE,
+//     }
+// }
 
 export function setUserProfileRedux (data) {
     console.log(typeof data.userId)
