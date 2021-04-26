@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, BrowserRouter as Router, Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthContext';
 import Cookies from 'js-cookie';
 import { useHttp } from '../../../hooks/http.hook';
@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserProfileRedux } from '../../authPage/login/actions';
 import './userProfile.css';
 import M from 'materialize-css';
+import CaloriesForUser from './pagesForUser/caloriesForUser/CaloriesForUser';
+import ListOfCalories from './pagesForUser/listOfCalories/ListOfCalories';
+import TrainingProgramm from './pagesForUser/trainingProgramm/TrainingProgramm';
 
 const UserProfile = () => {
 
@@ -18,16 +21,15 @@ const UserProfile = () => {
     const {request, error, clearError} = useHttp();
     const message = useMessage(); 
     const dispatch = useDispatch();
+    const [menuItem, setMenuItem] = useState();
     const login = useSelector((state) => {
       return state.user.data.login;
     })
-    const slide_menu = document.querySelectorAll(".sidenav");
-    M.Sidenav.init(slide_menu, {
-      // menuWidth: 300, // Default is 240
-      // edge: 'right', // Choose the horizontal origin
-      // closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    });
 
+    useEffect(() => {
+      const slide_menu = document.querySelectorAll(".sidenav");
+      M.Sidenav.init(slide_menu);
+    }, [])
 
     useEffect(() => {
       dispatch(setUserProfileRedux({
@@ -64,27 +66,44 @@ const UserProfile = () => {
       history.push('/');
     }
 
-    return ( 
-      <div>
-        <nav> 
-          <div className="nav-wrapper">
-            <a href="/" className="brand-logo">{login}</a>
-            <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
-            </ul>
-          </div>
-        </nav>
+    const getMenu = () => {
 
+      return (
         <ul id="slide-out" className="sidenav">
-          <div>
+          <div style={{marginBottom: '50px'}}>
             <h4 className="menuStyle">Menu</h4>
             <li><div class="divider"></div></li>
           </div>
-            <li><a className='aText'>Second Link</a></li> 
-            <li><a className='aText'>Get calories for you</a></li>
+            <li><Link to={`${window.location.pathname}/calories-for-user`} className='aText'>List of calories</Link></li> 
+            {/* <li><Link className='aText' onClick={()=>{setMenuItem(2)}}>Get calories for you</Link></li>
+            <li><Link className='aText' onClick={()=>{setMenuItem(3)}}>Create your training programm</Link></li> */}
         </ul>
-      </div>
+      )
+    }
+
+    return ( 
+      <Router>
+        <div>
+          <nav> 
+            <div className="nav-wrapper">
+              <a href="/" className="brand-logo">{login}</a>
+              <a href="/" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <Switch>
+             {/* TODO continue work with path for correct work page and also logout */}
+            <Route exact path={`${window.location.pathname}/calories-for-user`}>
+              <CaloriesForUser menuItem={menuItem}></CaloriesForUser>  
+            </Route>
+          </Switch>
+        </div>
+     
+        {getMenu()}
+      </Router>
     )
 }
 
