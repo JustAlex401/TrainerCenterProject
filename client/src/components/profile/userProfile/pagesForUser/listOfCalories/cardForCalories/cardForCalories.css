@@ -1,0 +1,34 @@
+.caloriesCard {
+  max-width: 600px;
+}
+
+.collection {
+  border: none;
+  margin-bottom: 0 !important;
+}
+
+.collection .collection-item {
+  background-color: #494748;
+  border: none;
+}
+
+.cardElement {
+  padding-bottom: 0 !important;
+}
+
+.cardStyle {
+  border-radius: 10px;
+  background-color: #494748;
+}
+
+.card .card-action {
+  border-radius: 10px;
+}
+
+.pText {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  cursor: pointer;
+  color: #ffab40;
+  margin-right: 24px;
+}
