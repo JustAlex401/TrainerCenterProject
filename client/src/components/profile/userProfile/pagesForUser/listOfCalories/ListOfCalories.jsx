@@ -18,8 +18,8 @@ const ListOfCalories = () => {
 
   return ( 
     <div className='col rootListCalories s12'>
-      <div class="row">
-        <div class="input-field col s8 offset-s2">
+      <div className="row">
+        <div className="input-field col s8 offset-s2">
           <i className="material-icons prefix inp" style={{cursor: 'pointer'}} onClick={searchHeader}>search</i>
           <input placeholder="search" id="icon_prefix" type="text" class="validate" onChange={changeHandler}></input>
           {console.log(searchWord)}

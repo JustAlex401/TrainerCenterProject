@@ -71,7 +71,7 @@ const UserProfile = () => {
         <ul id="slide-out" className="sidenav sidenav-close">
           <div style={{marginBottom: '50px'}}>
             <h4 className="menuStyle">Menu</h4>
-            <li><div class="divider"></div></li>
+            <li><div className="divider"></div></li>
           </div>
             <li><Link to={`${window.location.pathname}/list-of-calories`} className='aText'>List of calories</Link></li> 
             <li><Link to={`${window.location.pathname}/calories-for-you`} className='aText'>Calories for you</Link></li> 
