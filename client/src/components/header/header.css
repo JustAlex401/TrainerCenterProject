@@ -24,7 +24,7 @@ nav {
     margin-right: 60px;
 }
 
-.colTrainerList {
+.colContent {
     max-height: 680px;
     overflow: auto;
 }

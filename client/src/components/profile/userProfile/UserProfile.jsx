@@ -96,19 +96,17 @@ const UserProfile = () => {
           {getMenu()}
 
           <Switch>
-            <Route path={`${window.location.pathname}/list-of-calories`}>
+            <Route exact path={`${window.location.pathname}/list-of-calories`}>
               <ListOfCalories/>  
             </Route>
-            <Route path={`${window.location.pathname}/calories-for-you`}>
+            <Route exact path={`${window.location.pathname}/calories-for-you`}>
               <CaloriesForUser/>
             </Route>
-            <Route path={`${window.location.pathname}/training-programm`}>
+            <Route exact path={`${window.location.pathname}/training-programm`}>
               <TrainingProgramm/>
             </Route>
           </Switch>
         </div>
-     
-
       </Router>
     )
 }
