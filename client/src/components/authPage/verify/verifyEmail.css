@@ -30,3 +30,7 @@ i.right {
 .btn:hover {
     background-color: #DAA520;
 }
+
+i.right {
+  color: black
+}

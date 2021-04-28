@@ -14,6 +14,11 @@ const trainerCr = (sequelize, Sequelize) => {
             allowNull: false,
         },
 
+        photo: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+
         character: {
             type: Sequelize.STRING(2056),
             allowNull: false,
@@ -27,6 +32,11 @@ const trainerCr = (sequelize, Sequelize) => {
         weight: {
             type: Sequelize.INTEGER,
             allowNull: false,
+        },
+        
+        height: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
         },
     },
     {

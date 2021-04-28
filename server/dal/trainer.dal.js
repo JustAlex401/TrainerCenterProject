@@ -10,17 +10,9 @@ const getListTrainers = async function getListTrainers () {
     let data;
 
     try{
-        // data = await Trainer.findAll({
-        //     include: [
-        //         {
-        //             model: User,
-        //             require: true
-        //         }
-        //     ]
-        // })
         data = await db.sequelize.query(
             `
-                select u.id, u.login, u.email, t.age, t.weight, t.name, t.character from users u join trainers t on u.trainerId = t.id;
+                select u.id, u.login, u.email, t.age, t.weight, t.height, t.name, t.character, t.photo from users u join trainers t on u.trainerId = t.id;
             `
             , {type: QueryTypes.SELECT});
             console.log("AAa")
