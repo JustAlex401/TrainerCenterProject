@@ -4,9 +4,10 @@ import {Link, useLocation} from 'react-router-dom';
 import { getTrainerList } from '../trainerList/actions';
 import TrainerList from '../trainerList/TrainerList';
 import './header.css';
+import Footer from '../footer/Footer';
 
 const Header = () =>{
-  const [list, setList] = useState(false);
+  const [firstPageContent, setFirstPageContent] = useState(false);
   const trainerList = useSelector((state) => state.trainerList.data);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -14,7 +15,7 @@ const Header = () =>{
   useEffect(() => {
     console.log(location.pathname)
     if(location.pathname === '/'){
-      setList(true);
+      setFirstPageContent(true);
     }
     dispatch(getTrainerList());
   }, []);
@@ -25,17 +26,15 @@ const Header = () =>{
         <nav className="header">
           <div className="nav-wrapper">
             <a href="/" className="brand-logo">Fitness</a>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li><Link to='/sign-up' onClick={() => setList(false)} className="headerText">sign up</Link></li>
-              <li><Link to='/sign-in' onClick={() => setList(false)} className="headerText">sign in</Link></li>
+            <ul id="nav-mobile" className="right">
+              <li><Link to='/sign-up' onClick={() => setFirstPageContent(false)} className="headerText">sign up</Link></li>
+              <li><Link to='/sign-in' onClick={() => setFirstPageContent(false)} className="headerText">sign in</Link></li>
             </ul>
           </div>
         </nav>
-        
       </div>  
-
-      {list && 
-        <div className="colTrainerList">
+      {firstPageContent && 
+        <div className="colContent col">
           {
             trainerList.map((trainer, i) => {
               return (
@@ -46,8 +45,11 @@ const Header = () =>{
                 />
               )})
           }
+          <div className='col'>
+            <Footer/>
+          </div>
         </div>
-      } 
+      }
     </div>
   );
 }
