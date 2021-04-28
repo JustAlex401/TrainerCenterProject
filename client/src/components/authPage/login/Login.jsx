@@ -6,6 +6,7 @@ import { useMessage } from '../../../hooks/messages/message.hook';
 import { useDispatch, useSelector } from "react-redux";
 import { setUserProfile } from './actions';
 import './login.css';
+import Footer from '../../footer/Footer';
 
 export const Login = () => {
 
@@ -54,8 +55,8 @@ export const Login = () => {
     }
 
     return (
-        <div className="containerReg">
-            <div className="col center-align">
+        <div className="containerRegLogin">
+            <div className="col center-align" style={{width: '500px', marginLeft: 'auto', marginRight: 'auto'}}>
                 <div className="card #546e7a blue-grey darken-1 login">
                     <div className="card-content white-text">
                         <span className="card-title">Login</span>
@@ -79,6 +80,9 @@ export const Login = () => {
                         </button>
                     </div>
                 </div>
+            </div>
+            <div className='col'  style={{position: 'fixed', bottom: 0, width: '100%'}}>
+              <Footer/>
             </div>
         </div>
     

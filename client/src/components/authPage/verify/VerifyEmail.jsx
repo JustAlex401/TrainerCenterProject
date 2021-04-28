@@ -3,6 +3,7 @@ import { useHttp } from '../../../hooks/http.hook';
 import { useMessage } from '../../../hooks/messages/message.hook';
 import React, {useEffect} from 'react';
 import './verifyEmail.css';
+import Footer from '../../footer/Footer';
 
 const VerEm = (props) => {
 
@@ -22,10 +23,10 @@ const VerEm = (props) => {
             const data = await request(`/api/auth/activate?login=${login}`, 'GET');
             console.log(data);
             message(data.message);
-            history.push('/');
         } catch (e) {
             console.log(e);
         }
+        history.push('/');
     }
     
     return (
@@ -38,11 +39,15 @@ const VerEm = (props) => {
                     <div className="card-action center-align button">
                         <button className='btn' onClick={enterHandler} disabled={loading}>
                             Submit
-                            <i className="material-icons right">send</i>
+                            <i className="material-icons right verifyIcon">send</i>
                         </button>
                     </div>
                 </div>
             </div>
+            <div className="col" style={{position: 'fixed', bottom: 0, width: '100%'}}>
+              <Footer/>
+            </div>
+            
         </div>
         
     

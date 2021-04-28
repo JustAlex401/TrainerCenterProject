@@ -84,7 +84,7 @@ const UserProfile = () => {
       <Router>
         <div>
           <nav> 
-            <div className="nav-wrapper">
+            <div className="nav-wrapper" style={{marginLeft: '40px'}}>
               <a href="/" className="brand-logo">{login}</a>
               <a href="/" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
               <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -105,6 +105,7 @@ const UserProfile = () => {
             <Route exact path={`${window.location.pathname}/training-programm`}>
               <TrainingProgramm/>
             </Route>
+            {/* <Redirect to="/"/> */}
           </Switch>
         </div>
       </Router>

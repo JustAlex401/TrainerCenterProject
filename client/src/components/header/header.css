@@ -8,16 +8,17 @@ nav {
 
 .headerText {
     font-size: 100%;
+    color: #FFD700;
 }
 
 .brand-logo:hover {
     transform: scale(1.2);
-    transition: all 1s;
+    transition: all 0.5s;
 }
 
 .headerText:hover {
     transform: scale(1.2);
-    transition: all 1s;
+    transition: all 0.5s;
 }
 
 .right {
@@ -27,4 +28,8 @@ nav {
 .colContent {
     max-height: 680px;
     overflow: auto;
+}
+
+nav .logoStyle {
+  color: #FFD700;
 }

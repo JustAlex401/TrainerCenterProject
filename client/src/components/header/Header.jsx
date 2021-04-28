@@ -18,14 +18,14 @@ const Header = () =>{
       setFirstPageContent(true);
     }
     dispatch(getTrainerList());
-  }, []);
+  }, [location]);
 
   return (
     <div className="root">
       <div className="row">
         <nav className="header">
           <div className="nav-wrapper">
-            <a href="/" className="brand-logo">Fitness</a>
+            <a href="/" className="brand-logo logoStyle">Fitness</a>
             <ul id="nav-mobile" className="right">
               <li><Link to='/sign-up' onClick={() => setFirstPageContent(false)} className="headerText">sign up</Link></li>
               <li><Link to='/sign-in' onClick={() => setFirstPageContent(false)} className="headerText">sign in</Link></li>
