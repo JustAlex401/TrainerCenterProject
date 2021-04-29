@@ -14,6 +14,7 @@ import CaloriesForUser from './pagesForUser/caloriesForUser/CaloriesForUser';
 import ListOfCalories from './pagesForUser/listOfCalories/ListOfCalories';
 import TrainingProgramm from './pagesForUser/trainingProgramm/TrainingProgramm';
 import AboutUs from './pagesForUser/aboutUs/AboutUs';
+import FirstPage from './pagesForUser/firstPage/FirstPage';
 
 const UserProfile = () => {
 
@@ -86,11 +87,11 @@ const UserProfile = () => {
         <div>
           <nav> 
             <div className="nav-wrapper" style={{marginLeft: '40px'}}>
-              <a href="/" className="brand-logo">{login}</a>
-              <a href="/" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
+              <a href="/user-profile" className="brand-logo">{login}</a>
+              <a href="/user-profile" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li><Link to={`${window.location.pathname}/about-us`} className="logoutUserProfile">about us</Link></li> 
-                <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
+                <li><a href="/user-profile" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
               </ul>
             </div>
           </nav>
@@ -110,7 +111,9 @@ const UserProfile = () => {
             <Route exact path={`${window.location.pathname}/about-us`}>
               <AboutUs/>
             </Route>
-            {/* <Redirect to="/"/> */}
+            <Route exact path={`${window.location.pathname}`}>
+              <FirstPage/>
+            </Route>
           </Switch>
         </div>
       </Router>
