@@ -13,6 +13,7 @@ import M from 'materialize-css';
 import CaloriesForUser from './pagesForUser/caloriesForUser/CaloriesForUser';
 import ListOfCalories from './pagesForUser/listOfCalories/ListOfCalories';
 import TrainingProgramm from './pagesForUser/trainingProgramm/TrainingProgramm';
+import AboutUs from './pagesForUser/aboutUs/AboutUs';
 
 const UserProfile = () => {
 
@@ -88,6 +89,7 @@ const UserProfile = () => {
               <a href="/" className="brand-logo">{login}</a>
               <a href="/" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
               <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><Link to={`${window.location.pathname}/about-us`} className="logoutUserProfile">about us</Link></li> 
                 <li><a href="/" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
               </ul>
             </div>
@@ -104,6 +106,9 @@ const UserProfile = () => {
             </Route>
             <Route exact path={`${window.location.pathname}/training-programm`}>
               <TrainingProgramm/>
+            </Route>
+            <Route exact path={`${window.location.pathname}/about-us`}>
+              <AboutUs/>
             </Route>
             {/* <Redirect to="/"/> */}
           </Switch>
