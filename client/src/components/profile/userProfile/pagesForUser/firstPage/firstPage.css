@@ -1,0 +1,21 @@
+.firstUserPageTitle {
+  font-size: 60px;
+  font-family: 'Coda Caption', sans-serif;
+  color: white;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.divTitleStyle {
+  margin-top: 50px;
+  border: 4px solid #FFD700;
+  max-width: 550px;
+  transform: skewX(160deg);
+  margin-bottom: 50px;
+}
+
+.gymIcons {
+  margin: 0 5px 0 5px;
+  border: 2px solid #FFD700;
+  height: 250px;
+}
