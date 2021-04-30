@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './listOfCalories.css';
 import axios from 'axios';
 import CardForCalories from './cardForCalories/CardForCalories';
-import searchIcon from '../../../../../utils/images/search-in-mail.png';
-import notFoundIcon from '../../../../../utils/images/error.png';
+import searchIcon from '../../../../utils/images/search-in-mail.png';
+import notFoundIcon from '../../../../utils/images/error.png';
 
 const ListOfCalories = () => {
 

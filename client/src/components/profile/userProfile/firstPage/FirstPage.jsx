@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './firstPage.css';
-import firstGymIcon from '../../../../../utils/images/gym1.jpg';
-import secondGymIcon from '../../../../../utils/images/gym2.jpg';
-import thirdGymIcon from '../../../../../utils/images/gym3.jpg';
-import fourthGymIcon from '../../../../../utils/images/gym4.jpg';
-import cashIcon from '../../../../../utils/images/cash.png';
-import qualityIcon from '../../../../../utils/images/quality.png';
-import locationIcon from '../../../../../utils/images/location.png';
+import firstGymIcon from '../../../../utils/images/gym1.jpg';
+import secondGymIcon from '../../../../utils/images/gym2.jpg';
+import thirdGymIcon from '../../../../utils/images/gym3.jpg';
+import fourthGymIcon from '../../../../utils/images/gym4.jpg';
+import cashIcon from '../../../../utils/images/cash.png';
+import qualityIcon from '../../../../utils/images/quality.png';
+import locationIcon from '../../../../utils/images/location.png';
 
 const FirstPage = () => {
 
