@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import label from '../../../../../utils/images/label.jpg';
+import label from '../../../../utils/images/label.jpg';
 
 const AboutUs = () => {
 

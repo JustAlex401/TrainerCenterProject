@@ -4,9 +4,14 @@ import { Login } from './components/authPage/login/Login';
 import { Registration } from './components/authPage/registration/Registration';
 import VerEm from './components/authPage/verify/VerifyEmail';
 import Header from './components/header/Header';
-import UserProfile from './components/profile/userProfile/UserProfile';
 import AdminProfile from './components/profile/AdminProfile';
 import TrainerProfile from './components/profile/TrainerProfile';
+import ListOfCalories from './components/profile/userProfile/listOfCalories/ListOfCalories';
+import CaloriesForUser from './components/profile/userProfile/caloriesForUser/CaloriesForUser';
+import TrainingProgramm from './components/profile/userProfile/trainingProgramm/TrainingProgramm';
+import AboutUs from './components/profile/userProfile/aboutUs/AboutUs';
+import FirstPage from './components/profile/userProfile/firstPage/FirstPage';
+import UserNav from './components/profile/userProfile/userNav/UserNav';
 
 export const useRoutes = (isAuthenticated, role) => {
 
@@ -21,7 +26,22 @@ export const useRoutes = (isAuthenticated, role) => {
           <Switch>
               {isAuthenticated && role === "user" && (
                   <div>
-                    <Route exact path='/user-profile' component={UserProfile}/> 
+                    <UserNav/>
+                    <Route exact path={`/user-profile/list-of-calories`}>
+                      <ListOfCalories/>  
+                    </Route>
+                    <Route exact path={`/user-profile/calories-for-you`}>
+                      <CaloriesForUser/>
+                    </Route>
+                    <Route exact path={`/user-profile/training-programm`}>
+                      <TrainingProgramm/>
+                    </Route>
+                    <Route exact path={`/user-profile/about-us`}>
+                      <AboutUs/>
+                    </Route>
+                    <Route exact path={`/user-profile`}>
+                      <FirstPage/>
+                    </Route>
                     <Redirect to="/user-profile"/>
                   </div>
               )}
