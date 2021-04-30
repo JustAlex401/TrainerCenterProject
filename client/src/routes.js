@@ -27,19 +27,19 @@ export const useRoutes = (isAuthenticated, role) => {
               {isAuthenticated && role === "user" && (
                   <div>
                     <UserNav/>
-                    <Route exact path={`/user-profile/list-of-calories`}>
+                    <Route exact path='/user-profile/list-of-calories'>
                       <ListOfCalories/>  
                     </Route>
-                    <Route exact path={`/user-profile/calories-for-you`}>
+                    <Route exact path='/user-profile/calories-for-you'>
                       <CaloriesForUser/>
                     </Route>
-                    <Route exact path={`/user-profile/training-programm`}>
+                    <Route exact path='/user-profile/training-programm'>
                       <TrainingProgramm/>
                     </Route>
-                    <Route exact path={`/user-profile/about-us`}>
+                    <Route exact path='/user-profile/about-us'>
                       <AboutUs/>
                     </Route>
-                    <Route exact path={`/user-profile`}>
+                    <Route exact path='/user-profile'>
                       <FirstPage/>
                     </Route>
                     <Redirect to="/user-profile"/>

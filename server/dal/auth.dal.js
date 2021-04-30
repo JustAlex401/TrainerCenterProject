@@ -2,19 +2,29 @@ const { ErrorHandler } = require("../middleware/errors/error");
 const {db} = require("../models/db");
 const User = db.user;
 const Role = db.role;
+const Profile = db.profile;
 const err = require('../middleware/errors/errors.const');
 
 const registration = async function registration(regForm){
 
-    let user; 
+  const t = await db.sequelize.transaction();
+  let user; 
 
-    try{
-         user = await User.create(regForm);
-    } catch (error) {
-        throw new ErrorHandler(500, err[500]);
-    }
+  try{
+    user = await User.create(regForm, { transaction: t });
 
-    return user;
+    console.log('userAAA', user)
+    await Profile.create({
+      userId: user.id
+    }, { transaction: t });
+
+    await t.commit();
+  } catch (error) {
+    await t.rollback();
+    throw new ErrorHandler(500, err[500]);
+  }
+
+  return user;
 }
 
 const login = async function login(loginForm){
