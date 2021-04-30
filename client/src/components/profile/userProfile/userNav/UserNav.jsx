@@ -18,7 +18,6 @@ const UserNav = () => {
   const {request, error, clearError} = useHttp();
   const message = useMessage(); 
   const dispatch = useDispatch();
-  const [menuItem, setMenuItem] = useState();
   const login = useSelector((state) => {
     return state.user.data.login;
   })
@@ -69,9 +68,9 @@ const UserNav = () => {
           <h4 className="menuStyle">Menu</h4>
           <li><div className="divider"></div></li>
         </div>
-          <li><Link to={`${window.location.pathname}/list-of-calories`} className='aText'>List of calories</Link></li> 
-          <li><Link to={`${window.location.pathname}/calories-for-you`} className='aText'>Calories for you</Link></li> 
-          <li><Link to={`${window.location.pathname}/training-programm`} className='aText'>Training programm</Link></li> 
+          <li><Link to='/user-profile/list-of-calories' className='aText'>List of calories</Link></li> 
+          <li><Link to='/user-profile/calories-for-you' className='aText'>Calories for you</Link></li> 
+          <li><Link to='/user-profile/training-programm' className='aText'>Training programm</Link></li> 
       </ul>
     )
   }
@@ -83,7 +82,7 @@ const UserNav = () => {
           <a href="/user-profile" className="brand-logo">{login}</a>
           <a href="/user-profile" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><Link to={`${window.location.pathname}/about-us`} className="logoutUserProfile">about us</Link></li> 
+            <li><Link to='/user-profile/about-us' className="logoutUserProfile">about us</Link></li> 
             <li><a href="/user-profile" onClick={logoutHandler} className="logoutUserProfile">logout</a></li>
           </ul>
         </div>
