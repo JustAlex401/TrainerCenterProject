@@ -1,6 +1,6 @@
 const authController = require('./auth.controller');
 const trainerController = require('./trainer.controller');
-
+const userController = require('./user.controller');
 
 const controller = {
     registration : authController.registration,
@@ -8,6 +8,7 @@ const controller = {
     activate : authController.activate,
     getListTrainers: trainerController.getListTrainers,
     logout: authController.logout,
+    getCalories: userController.getCalories,
 }
 
 

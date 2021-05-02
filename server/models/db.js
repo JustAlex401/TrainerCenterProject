@@ -4,6 +4,7 @@ const {userCr} = require("./user.model");
 const {roleCr} = require("./role.model");
 const {trainerCr} = require('./trainer.model')
 const {profileCr} = require('./profile.model');
+const {knowledgeBazeForCaloriesCr} = require('./knowledgeBazeForCalories.model');
 
 sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get("PASSWORD"),
   {
@@ -26,12 +27,14 @@ sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get
  const role = roleCr(sequelize, Sequelize);
  const trainer = trainerCr(sequelize, Sequelize);
  const profile = profileCr(sequelize, Sequelize);
+ const KnowledgeBazeForCalories = knowledgeBazeForCaloriesCr(sequelize, Sequelize);
 
  const db = {
   user: user,
   role: role,
   trainer: trainer,
   profile: profile,
+  KnowledgeBazeForCalories: KnowledgeBazeForCalories,
   Sequelize: Sequelize,
   sequelize: sequelize
  }
@@ -39,6 +42,7 @@ sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get
 db.trainer.hasOne(db.user);
 db.role.hasMany(db.user);
 db.user.hasOne(db.profile);
+db.KnowledgeBazeForCalories.hasMany(db.profile);
 
  module.exports = {
   db

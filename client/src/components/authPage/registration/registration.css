@@ -27,3 +27,7 @@
 .btn:hover {
     background-color: #DAA520;
 }
+
+.loginContainer {
+  margin-top: -20px !important;
+}
