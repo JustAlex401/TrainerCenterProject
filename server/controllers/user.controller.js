@@ -17,6 +17,21 @@ const getCalories = async (req, res, next) => {
     }
 }
 
+const getProfile = async (req, res, next) => {
+
+  try{
+
+    const data = await Service.getProfileServ(req.params.id);
+
+    res.status(200).json(data);
+
+  } catch (error) {
+    console.log(error);
+    next(new ErrorHandler(500, err[500]));
+  }
+}
+
 module.exports = {
   getCalories,   
+  getProfile
 }

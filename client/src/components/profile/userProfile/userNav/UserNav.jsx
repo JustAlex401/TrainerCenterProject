@@ -71,6 +71,7 @@ const UserNav = () => {
           <li><Link to='/user-profile/list-of-calories' className='aText'>List of calories</Link></li> 
           <li><Link to='/user-profile/calories-for-you' className='aText'>Calories for you</Link></li> 
           <li><Link to='/user-profile/training-programm' className='aText'>Training programm</Link></li> 
+          <li><Link to='/user-profile/profile' className='aText'>Profile</Link></li> 
       </ul>
     )
   }
@@ -79,7 +80,7 @@ const UserNav = () => {
     <div>
       <nav> 
         <div className="nav-wrapper" style={{marginLeft: '40px'}}>
-          <a href="/user-profile" className="brand-logo">{login}</a>
+          <Link to="/user-profile" className="brand-logo">{login}</Link>
           <a href="/user-profile" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><Link to='/user-profile/about-us' className="logoutUserProfile">about us</Link></li> 

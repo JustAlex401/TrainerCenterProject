@@ -8,7 +8,8 @@ const dal = {
     activate: authDal.activate,
     getListTrainers: trainerDal.getListTrainers,
     getAdditionalOptionForCalories: userDal.getAdditionalOptionForCalories,
-    saveToProfile: userDal.saveToProfile
+    saveToProfile: userDal.saveToProfile,
+    getProfile: userDal.getProfile
 }
 
 module.exports=dal;
