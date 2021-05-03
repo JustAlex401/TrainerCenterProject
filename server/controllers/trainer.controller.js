@@ -1,5 +1,6 @@
 const Service = require('../services/index');
 const {ErrorHandler} = require('../middleware/errors/error');
+const err = require('../middleware/errors/errors.const');
 
 const getListTrainers = async function getListTrainers(req, res, next) {
     try{

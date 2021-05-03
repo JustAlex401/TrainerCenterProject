@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import { userReducer } from "../components/authPage/login/reducer";
 import { trainerReducer } from "../components/trainerList/reducer";
+import { profileReducer } from '../components/profile/userProfile/caloriesForUser/reducer';
 
 export const rootReducer = combineReducers({
     user: userReducer,
-    trainerList: trainerReducer
+    trainerList: trainerReducer,
+    profile: profileReducer
 })

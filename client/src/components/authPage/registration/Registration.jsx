@@ -46,18 +46,16 @@ export const Registration = () => {
               <div>
 
                 <div className="input-field">
-                    <input className="Inp" placeholder="Email" id="email" type="text" name='email' onChange={changeHandler} /*autoComplete='off'*//>
-                    <label for="email"></label>
+                    <input className="Inp validate" placeholder="Email" id="email" type="email" name='email' onChange={changeHandler} /*autoComplete='off'*//>
+                    <span className="helper-text" data-error="wrong" data-success="right">Helper text</span>
                 </div>
 
-                <div className="input-field">
+                <div className="input-field loginContainer">
                     <input className="Inp" placeholder="Login" id="login" type="text" name='login' onChange={changeHandler} autoComplete='off'/>
-                    <label for="login"></label>
                 </div>
 
                 <div className="input-field">
                     <input className="Inp" placeholder="Password" id="password" type="password" name='password' onChange={changeHandler} autoComplete='off'/>
-                    <label for="password"></label>
                 </div>
 
               </div>

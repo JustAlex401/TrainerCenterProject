@@ -9,9 +9,29 @@ const profileCr = (sequelize, Sequelize) => {
       primaryKey: true,
     },
 
+    age: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
+
+    weight: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
+
+    height: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
+
+    gender: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+
     calories: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
+      type: Sequelize.DOUBLE,
+      allowNull: true,
     },
   },
   {

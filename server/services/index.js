@@ -1,6 +1,6 @@
 const authServ = require('./auth.service');
 const trainerServ = require('./trainer.service');
-
+const userServ = require('./user.service');
 
 const Service = {
     registrationServ: authServ.registrationServ,
@@ -8,6 +8,7 @@ const Service = {
     activateServ: authServ.activateServ,
     getListTrainersService: trainerServ.getListTrainersService,
     logoutServ: authServ.logoutServ,
+    getCaloriesServ: userServ.getCaloriesServ,
 }
 
 module.exports=Service;
