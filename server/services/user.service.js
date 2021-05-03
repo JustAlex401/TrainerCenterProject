@@ -19,6 +19,20 @@ const getCaloriesServ =  async (userData, userId) => {
     return userData;
 }
 
+const getProfileServ = async (userId) => {
+
+  let result; 
+
+  try{
+    result = await dal.getProfile(userId);
+  } catch (error) {
+      throw new ErrorHandler(500, err[500]);
+  } 
+
+  return result;
+}
+
 module.exports = {
-  getCaloriesServ
+  getCaloriesServ,
+  getProfileServ
 }

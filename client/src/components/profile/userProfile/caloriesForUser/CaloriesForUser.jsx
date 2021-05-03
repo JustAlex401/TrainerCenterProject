@@ -3,7 +3,7 @@ import M from 'materialize-css';
 import './caloriesForUser.css';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserProfileForTraining } from './actions';
+import { setUserProfileForTraining } from '../actions';
 
 const CaloriesForUser = () => {
 

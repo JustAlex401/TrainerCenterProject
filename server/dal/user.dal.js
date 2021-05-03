@@ -51,7 +51,26 @@ const saveToProfile = async (profileData, userId) => {
   }
 }
 
+const getProfile = async (id) => {
+
+  let data;
+
+  try{
+      data = await db.sequelize.query(
+        `
+          select * from profiles where userId = ${id};
+        `,
+        {type: QueryTypes.SELECT}
+        );
+  } catch (error) {
+      throw new ErrorHandler(500, err[500]);
+  }
+
+  return data[0];
+}
+
 module.exports = {
   getAdditionalOptionForCalories,
-  saveToProfile
+  saveToProfile,
+  getProfile
 }
