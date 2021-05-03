@@ -1,11 +1,13 @@
 import { all } from 'redux-saga/effects';
 import TrainerList from '../components/trainerList/saga';
-import Profile from '../components/authPage/login/saga';
+import UserData from '../components/authPage/login/saga';
+import Profile from '../components/profile/userProfile/caloriesForUser/saga';
 
 const Sagas = function*(){
   yield all([
     TrainerList(),
-    Profile(),
+    UserData(),
+    Profile()
   ]);
 }
 

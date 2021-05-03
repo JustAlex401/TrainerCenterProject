@@ -24,16 +24,15 @@ const getAdditionalOptionForCalories = async (id) => {
   return data[0];
 }
 
-const saveToProfile = async (profileData, userId, calories) => {
-  let data;
+const saveToProfile = async (profileData, userId) => {
 
   try{
-      data = await Profile.update(
+      await Profile.update(
         {age: profileData.age, 
           weight: profileData.weight, 
           height: profileData.height, 
           gender: profileData.gender, 
-          calories: calories,
+          calories: profileData.calories,
           knowledgeBazeForCaloryId: profileData.knowledgeBazeForCaloryId
         },
         {
@@ -46,13 +45,10 @@ const saveToProfile = async (profileData, userId, calories) => {
         {type: QueryTypes.UPDATE}
         );
         
-        console.log('saveData', data)
   } catch (error) {
     console.log(error)
     throw new ErrorHandler(500, err[500]);
   }
-
-  return data[0];
 }
 
 module.exports = {

@@ -20,3 +20,11 @@ input::-webkit-inner-spin-button {
 .switch label input[type=checkbox]:checked+.lever {
   background-color: #FFD700;
 }
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after, [type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after  {
+  background-color: #FFD700;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before, [type="radio"].with-gap:checked+span:after {
+  border: 2px solid #FFD700;
+}
