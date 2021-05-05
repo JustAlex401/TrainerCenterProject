@@ -12,4 +12,9 @@ routerUsers.get(
   controller.getProfile
 );
 
+routerUsers.post(
+  '/payment/',
+  controller.payment
+);
+
 module.exports=routerUsers;

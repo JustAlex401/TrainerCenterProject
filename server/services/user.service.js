@@ -1,6 +1,8 @@
 const dal = require('../dal/index');
 const err = require('../middleware/errors/errors.const');
 const { ErrorHandler } = require("../middleware/errors/error");
+const config = require('config');
+const stripe = require('stripe')(config.get('stripe_secret_key'));
 
 const getCaloriesServ =  async (userData, userId) => {
 
@@ -32,7 +34,26 @@ const getProfileServ = async (userId) => {
   return result;
 }
 
+const paymentServ = async (paymentData) => {
+  console.log('paymentData', paymentData)
+  let {amount, id} = paymentData;
+  try {
+    const payment = await stripe.paymentIntents.create({
+      amount,
+      currency: "USD",
+      description: "Spatula company",
+      payment_method: id,
+      confirm: true
+    })
+    console.log("Payment", payment);
+    return {message: "Payment success", success: true}
+  } catch (err) {
+    throw new ErrorHandler(500, err[500]);
+  }
+} 
+
 module.exports = {
   getCaloriesServ,
-  getProfileServ
+  getProfileServ,
+  paymentServ
 }

@@ -9,7 +9,8 @@ const controller = {
     getListTrainers: trainerController.getListTrainers,
     logout: authController.logout,
     getCalories: userController.getCalories,
-    getProfile: userController.getProfile
+    getProfile: userController.getProfile,
+    payment: userController.payment
 }
 
 

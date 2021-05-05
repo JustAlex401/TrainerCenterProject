@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import './payment.css';
 
@@ -27,6 +28,7 @@ const CARD_OPTIONS = {
 const PaymentForm = () => {
 
   const [success, setSuccess ] = useState(false)
+  const userId = useSelector(state => state.user.data.userId);
   const stripe = useStripe()
   const elements = useElements()
 
@@ -42,9 +44,10 @@ const PaymentForm = () => {
     if(!error) {
         try {
             const {id} = paymentMethod
-            const response = await axios.post("/payment", {
+            const response = await axios.post("/api/user/payment", {
                 amount: 1000,
-                id
+                id,
+                userId
             })
 
             if(response.data.success) {

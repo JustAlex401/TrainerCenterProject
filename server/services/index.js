@@ -9,7 +9,8 @@ const Service = {
     getListTrainersService: trainerServ.getListTrainersService,
     logoutServ: authServ.logoutServ,
     getCaloriesServ: userServ.getCaloriesServ,
-    getProfileServ: userServ.getProfileServ
+    getProfileServ: userServ.getProfileServ,
+    paymentServ: userServ.paymentServ
 }
 
 module.exports=Service;

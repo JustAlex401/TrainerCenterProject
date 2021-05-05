@@ -25,13 +25,31 @@ const getProfile = async (req, res, next) => {
 
     res.status(200).json(data);
 
+    next();
+
   } catch (error) {
     console.log(error);
     next(new ErrorHandler(500, err[500]));
   }
 }
 
+const payment = async (req, res, next) => {
+
+  try {
+    const data = await Service.paymentServ(req.body);
+
+    res.status(200).json(data);
+
+    next();
+  } catch (err) {
+    console.log(error);
+    next(new ErrorHandler(500, err[500]));
+  }
+
+}
+
 module.exports = {
   getCalories,   
-  getProfile
+  getProfile,
+  payment
 }
