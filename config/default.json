@@ -22,5 +22,7 @@
 
     "jwtSecret": "JustAlex Project",
     "jwt_expiration": 600,
-    "jwt_refresh_expiration": 2592000
+    "jwt_refresh_expiration": 2592000,
+
+    "stripe_secret_key": "sk_test_51InTutAVyFBSmIculbtUvDZorTUadhmmRDb2FY4DfngTMia0amf7LROzSCxVSwFf9f1F4rAEbHiKgsFAND3CsCi4001jABg7Ky"
 }

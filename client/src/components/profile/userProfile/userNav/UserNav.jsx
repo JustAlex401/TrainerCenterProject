@@ -71,6 +71,7 @@ const UserNav = () => {
           <li><Link to='/user-profile/list-of-calories' className='aText'>List of calories</Link></li> 
           <li><Link to='/user-profile/calories-for-you' className='aText'>Calories for you</Link></li> 
           <li><Link to='/user-profile/training-programm' className='aText'>Training programm</Link></li> 
+          <li><Link to='/user-profile/payment' className='aText'>Payment</Link></li> 
           <li><Link to='/user-profile/profile' className='aText'>Profile</Link></li> 
       </ul>
     )
