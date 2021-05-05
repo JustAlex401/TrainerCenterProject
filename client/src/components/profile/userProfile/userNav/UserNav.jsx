@@ -81,7 +81,7 @@ const UserNav = () => {
     <div>
       <nav> 
         <div className="nav-wrapper" style={{marginLeft: '40px'}}>
-          <Link to="/user-profile" className="brand-logo">{login}</Link>
+          <Link to="/user-profile" className="brand-logo"><i className="material-icons" style={{marginTop: '4px', marginRight: '5px'}}>face</i>{login}</Link>
           <a href="/user-profile" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a> 
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><Link to='/user-profile/about-us' className="logoutUserProfile">about us</Link></li> 
