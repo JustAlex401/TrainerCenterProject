@@ -1,0 +1,24 @@
+import React, { useState } from 'react';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import PaymentForm from './PaymentForm';
+
+
+const Payment = () => {
+
+    
+  const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
+
+  const stripeTestPromise = loadStripe(stripePublicKey);
+
+
+  return ( 
+    <div className="col container center" style={{marginTop: '200px', height: '300px'}}>
+      <Elements stripe={stripeTestPromise}>
+        <PaymentForm/>  
+      </Elements>
+    </div>
+  )
+}
+
+export default Payment;

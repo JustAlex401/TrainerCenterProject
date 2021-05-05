@@ -13,6 +13,7 @@ import AboutUs from './components/profile/userProfile/aboutUs/AboutUs';
 import FirstPage from './components/profile/userProfile/firstPage/FirstPage';
 import UserNav from './components/profile/userProfile/userNav/UserNav';
 import Profile from './components/profile/userProfile/profile/Profile';
+import Payment from './components/profile/userProfile/payment/Payment';
 
 export const useRoutes = (isAuthenticated, role) => {
 
@@ -39,6 +40,9 @@ export const useRoutes = (isAuthenticated, role) => {
                     </Route>
                     <Route exact path='/user-profile/about-us'>
                       <AboutUs/>
+                    </Route>
+                    <Route exact path='/user-profile/payment'>
+                      <Payment/>
                     </Route>
                     <Route exact path='/user-profile/profile'>
                       <Profile/>
