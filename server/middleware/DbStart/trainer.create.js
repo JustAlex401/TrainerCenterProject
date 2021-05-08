@@ -16,6 +16,7 @@ const trainer = async function trainer (db){
             age: 23,
             weight: 90,
             height: 185,
+            typesOfFitnessId: 3,
         },  { transaction: t }).then(data => {
             trainerId=data.dataValues.id;
         })
@@ -36,6 +37,7 @@ const trainer = async function trainer (db){
             age: 21,
             weight: 55,
             height: 167,
+            typesOfFitnessId: 5,
         },  { transaction: t }).then(data => {
             trainerId=data.dataValues.id;
         })
@@ -56,6 +58,7 @@ const trainer = async function trainer (db){
             age: 34,
             weight: 128,
             height: 181,
+            typesOfFitnessId: 1,
         },  { transaction: t }).then(data => {
             trainerId=data.dataValues.id;
         })
@@ -76,6 +79,7 @@ const trainer = async function trainer (db){
           age: 26,
           weight: 172,
           height: 61,
+          typesOfFitnessId: 2,
       },  { transaction: t }).then(data => {
           trainerId=data.dataValues.id;
       })
@@ -96,6 +100,7 @@ const trainer = async function trainer (db){
           age: 27,
           weight: 85,
           height: 192,
+          typesOfFitnessId: 4,
       },  { transaction: t }).then(data => {
           trainerId=data.dataValues.id;
       })

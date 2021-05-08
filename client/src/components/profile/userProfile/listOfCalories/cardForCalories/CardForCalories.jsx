@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './cardForCalories.css';
-import M from 'materialize-css';
 
 const CardForCalories = ({foodItem}) => {
 

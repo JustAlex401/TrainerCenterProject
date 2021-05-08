@@ -5,7 +5,8 @@ const {roleCr} = require("./role.model");
 const {trainerCr} = require('./trainer.model')
 const {profileCr} = require('./profile.model');
 const {knowledgeBazeForCaloriesCr} = require('./knowledgeBazeForCalories.model');
-const {purchaseOfSubscriptionsCr} = require('./purchaseOfSubscriptions')
+const {purchaseOfSubscriptionsCr} = require('./purchaseOfSubscriptions');
+const {typesOfFitnessCr} = require('./typesOfFitness');
 
 sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get("PASSWORD"),
   {
@@ -26,6 +27,7 @@ sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get
 
  const user = userCr(sequelize, Sequelize);
  const role = roleCr(sequelize, Sequelize);
+ const typesOfFitness = typesOfFitnessCr(sequelize, Sequelize);
  const trainer = trainerCr(sequelize, Sequelize);
  const profile = profileCr(sequelize, Sequelize);
  const KnowledgeBazeForCalories = knowledgeBazeForCaloriesCr(sequelize, Sequelize);
@@ -34,6 +36,7 @@ sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get
  const db = {
   user: user,
   role: role,
+  typesOfFitness: typesOfFitness,
   trainer: trainer,
   profile: profile,
   KnowledgeBazeForCalories: KnowledgeBazeForCalories,
@@ -44,6 +47,7 @@ sequelize = new Sequelize(dbConfig.get("DB"), dbConfig.get("USER"), dbConfig.get
 
 db.trainer.hasOne(db.user);
 db.role.hasMany(db.user);
+db.typesOfFitness.hasMany(db.trainer);
 db.user.hasOne(db.profile);
 db.KnowledgeBazeForCalories.hasMany(db.profile);
 db.user.hasMany(db.purchaseOfSubscriptions);

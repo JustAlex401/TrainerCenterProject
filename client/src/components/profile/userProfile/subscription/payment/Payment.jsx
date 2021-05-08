@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import PaymentForm from './PaymentForm';
 
-
-const Payment = () => {
+const Payment = ({setClose}) => {
 
     
   const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
@@ -13,9 +12,9 @@ const Payment = () => {
 
 
   return ( 
-    <div className="col container center" style={{marginTop: '200px', height: '300px'}}>
+    <div className="col container center" style={{marginTop: '50px', marginBottom: '50px', height: '100px'}}>
       <Elements stripe={stripeTestPromise}>
-        <PaymentForm/>  
+        <PaymentForm setClose={setClose}/>  
       </Elements>
     </div>
   )
