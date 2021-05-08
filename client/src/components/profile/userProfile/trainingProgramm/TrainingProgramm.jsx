@@ -1,12 +1,128 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserProfileForTraining } from '../actions';
+import M from 'materialize-css';
+import { getExercisesAndTrainers } from './actions';
+import TrainerList from '../../../trainerList/TrainerList';
 
 const TrainingProgramm = () => {
 
-    return ( 
-      <div>
-        <p></p>
-      </div>
-    )
+  const profileData = useSelector(state => state.profile.data);
+  const id = useSelector(state => state.user.data.userId);
+  const resultExercisesAndTrainers = useSelector(state => state.exercises.data);
+  const [oneMore, setOneMore] = useState(true);
+  const dispatch = useDispatch();
+  const [disable, setDisable] = useState();
+  const [data, setData] = useState({
+    usualyCalories: 0 ,
+    caloriesProfile: 0,
+    time: 0,
+    weight: 0,
+    typeOfFitness: 0,
+  }); 
+
+  useEffect(() => {
+    const elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+  }, [])
+
+  useEffect(() => {
+    const elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+  }, [oneMore])
+
+  useEffect(async () => {
+    dispatch(getUserProfileForTraining());
+  }, [id])
+
+  useEffect(() => {
+    setData({...data, ['weight']: profileData.weight, ['caloriesProfile']: profileData.calories})
+  }, [profileData])
+
+  useEffect(() => {
+    if(data.usualyCalories && data.time && data.typeOfFitness && data.weight && data.caloriesProfile && !(data.usualyCalories < data.caloriesProfile)){
+      setDisable(false);
+    } else {
+      setDisable(true);
+    }
+  }, [data])
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
+  const getExercises = async () => {
+    dispatch(getExercisesAndTrainers(data));
+    setOneMore(false);
+  }
+
+  useEffect(() => {
+    console.log(oneMore)
+  }, [oneMore])
+
+  const setOneMoreFunc = () => {
+    setOneMore(true);
+  }
+
+  return ( 
+    <div style={{height: '700px', overflow: 'auto'}}>
+      {oneMore ?
+        <div className="col container center" style={{marginTop: '50px'}}>
+          <p style={{color: 'white', fontSize: '20px', marginBottom: '50px'}}>Enter your data for selection a training: </p>
+          <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
+            <input className="Inp" id='usualyCalories' type="number" style={{marginTop: '10px'}} name='usualyCalories' onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}} autoComplete='off'/>
+            <label className='labelStyle' for='usualyCalories'>Calories you eating usualy should be more then needed calories(kcals)</label>
+          </div>
+          <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
+            <input className="Inp" id="time" type="number" name='time' onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}} autoComplete='off'/>
+            <label className='labelStyle' for='time'>Time (min)</label>
+          </div>
+          <div className="input-field col container center" style={{width: '400px', marginBottom: '40px'}}>
+            <select className="selectStyle" name="typeOfFitness" onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}}>
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">Bodybuilding</option>
+              <option value="2">Stretching</option>
+              <option value="3">Crossfit</option>
+              <option value="4">Powerlifting</option>
+              <option value="5">Yoga</option>
+            </select>
+          </div>
+          <div style={{marginTop: '30px'}}>
+            <button className="waves-effect waves-light btn" disabled={disable} onClick={getExercises}>Ok</button>
+          </div>
+        </div>
+      :
+        <div className="col" style={{marginTop: '50px'}}>
+          <div className="col container center">
+            <p style={{color: 'white', fontSize: '18px'}}>You can use this exercises for training for lose calories:</p>
+            {resultExercisesAndTrainers?.exercises?.limit && 
+              <p style={{color: 'white', fontSize: '20px'}}>You can use this exercises spending more time for training</p>
+            }
+            {
+              resultExercisesAndTrainers?.exercises?.exercises.map((trainer, i) => {
+                return (
+                  <p style={{color: 'white', fontSize: '18px'}}>{i+1}: {trainer.exercise}</p>
+                )
+              })
+            }
+          </div>
+          {
+            resultExercisesAndTrainers?.trainer?.map((trainer, i) => {
+              return (
+                <TrainerList 
+                  trainer={trainer}
+                  key={i}
+                  index={i}
+                />
+              )})
+          }
+          <div className="col container center" style={{marginTop: '70px'}}> 
+            <button className="waves-effect waves-light btn" onClick={setOneMoreFunc}>Ok</button>
+          </div>
+        </div>
+      }
+    </div>
+  )
 }
 
 export default TrainingProgramm;

@@ -9,7 +9,9 @@ const dal = {
     getListTrainers: trainerDal.getListTrainers,
     getAdditionalOptionForCalories: userDal.getAdditionalOptionForCalories,
     saveToProfile: userDal.saveToProfile,
-    getProfile: userDal.getProfile
+    getProfile: userDal.getProfile,
+    getExercisesAndTrainerDal: userDal.getExercisesAndTrainerDal,
+    getTrainerByTypeOfFitness: trainerDal.getTrainerByTypeOfFitness
 }
 
 module.exports=dal;

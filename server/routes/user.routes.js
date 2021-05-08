@@ -17,4 +17,9 @@ routerUsers.post(
   controller.payment
 );
 
+routerUsers.post(
+  '/exercises-and-trainers/:id',
+  controller.getExercisesAndTrainer
+)
+
 module.exports=routerUsers;

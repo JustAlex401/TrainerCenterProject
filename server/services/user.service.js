@@ -52,8 +52,24 @@ const paymentServ = async (paymentData) => {
   }
 } 
 
+const getExercisesAndTrainerServ = async (id, userData) => {
+  let response;
+  try {
+    const met = ((userData.usualyCalories - userData.caloriesProfile) * 200) / (3.5 * userData.time * userData.weight);
+    console.log(met)
+    const exercises = await dal.getExercisesAndTrainerDal(met, userData.typeOfFitness);
+    console.log('exercises', exercises)
+    const trainer = await dal.getTrainerByTypeOfFitness(userData.typeOfFitness);
+    response = {exercises: {...exercises}, trainer: [...trainer]}
+  } catch (err) {
+    throw new ErrorHandler(500, err[500]);
+  }
+  return response;
+}
+
 module.exports = {
   getCaloriesServ,
   getProfileServ,
-  paymentServ
+  paymentServ,
+  getExercisesAndTrainerServ
 }
