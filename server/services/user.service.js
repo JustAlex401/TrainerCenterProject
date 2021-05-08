@@ -11,7 +11,7 @@ const getCaloriesServ =  async (userData, userId) => {
     try{
         console.log(userData)
         const additionalOption = await dal.getAdditionalOptionForCalories(userData.knowledgeBazeForCaloryId);
-        result = ((10 * userData.weight) + (6.25 * userData.height) + (5 * userData.age) + Number.parseInt(userData.gender === 'Male' ? 5 : -161)) * Number.parseInt(additionalOption.result);
+        result = (((10 * userData.weight) + (6.25 * userData.height) + (5 * userData.age) + Number.parseInt(userData.gender === 'Male' ? 5 : -161)) * Number.parseFloat(additionalOption.result)) - (userData.healthProblems ? 250 : 0);
         userData.calories = result;
         await dal.saveToProfile(userData, userId);
     } catch (error) {
