@@ -17,6 +17,7 @@ const TrainerList = ({trainer, key, index}) => {
                                     <li>age: {trainer.age}</li>
                                     <li>weight: {trainer.weight}</li>
                                     <li>height: {trainer.height}</li>
+                                    <li>type of fitness: {trainer.typeOfFitness}</li>
                                 </ul>
                                 <p>{trainer.character}</p>
                             </div>
