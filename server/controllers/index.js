@@ -10,7 +10,8 @@ const controller = {
     logout: authController.logout,
     getCalories: userController.getCalories,
     getProfile: userController.getProfile,
-    payment: userController.payment
+    payment: userController.payment,
+    getExercisesAndTrainer: userController.getExercisesAndTrainer,
 }
 
 

@@ -10,7 +10,8 @@ const Service = {
     logoutServ: authServ.logoutServ,
     getCaloriesServ: userServ.getCaloriesServ,
     getProfileServ: userServ.getProfileServ,
-    paymentServ: userServ.paymentServ
+    paymentServ: userServ.paymentServ,
+    getExercisesAndTrainerServ: userServ.getExercisesAndTrainerServ
 }
 
 module.exports=Service;

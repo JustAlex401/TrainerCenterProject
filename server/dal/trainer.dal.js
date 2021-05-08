@@ -25,6 +25,26 @@ const getListTrainers = async function getListTrainers () {
     return data;
 }
 
+const getTrainerByTypeOfFitness = async function getListTrainers (typeOfFitness) {
+
+  let data;
+
+  try{
+    data = await db.sequelize.query(
+      `
+        select * from trainers tr join users u on tr.id = u.trainerId
+          join typesOfFitnesses typ on tr.typesOfFitnessId = typ.id 
+          where typesOfFitnessId = ${typeOfFitness};
+      `
+      , {type: QueryTypes.SELECT});
+  } catch (error) {
+      throw new ErrorHandler(500, err[500]);
+  }
+
+  return data;
+}
+
 module.exports = {
-    getListTrainers
+    getListTrainers,
+    getTrainerByTypeOfFitness
 }

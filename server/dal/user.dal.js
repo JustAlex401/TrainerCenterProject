@@ -69,8 +69,38 @@ const getProfile = async (id) => {
   return data[0];
 }
 
+const getExercisesAndTrainerDal = async (met, typeOfFitness) => {
+
+  let result;
+  let data;
+
+  try{
+      data = await db.sequelize.query(
+        `
+          select * from caloriesAndExercises where met > ${met - 0.5} and met < ${met + 0.5} and typesOfFitnessId = ${typeOfFitness};
+        `,
+        {type: QueryTypes.SELECT}
+      );
+      if (!data.length) {
+        data = await db.sequelize.query(
+          `
+            select * from caloriesAndExercises where typesOfFitnessId = ${typeOfFitness} order by met desc LIMIT 3;
+          `,
+          {type: QueryTypes.SELECT}
+        );
+        result = {exercises: [...data], limit: true};
+      } else {
+        result = {exercises: [...data], limit: false};
+      }
+  } catch (error) {
+      throw new ErrorHandler(500, err[500]);
+  }
+  return result;
+}
+
 module.exports = {
   getAdditionalOptionForCalories,
   saveToProfile,
-  getProfile
+  getProfile,
+  getExercisesAndTrainerDal
 }
