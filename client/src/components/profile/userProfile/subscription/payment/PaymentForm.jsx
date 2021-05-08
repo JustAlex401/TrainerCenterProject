@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import './payment.css';
+import { useMessage } from '../../../../../hooks/messages/message.hook';
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
@@ -15,7 +16,7 @@ const CARD_OPTIONS = {
 			fontSize: "16px",
 			fontSmoothing: "antialiased",
 			":-webkit-autofill": { color: "#fce883" },
-			"::placeholder": { color: "#87bbfd" }
+			"::placeholder": { color: "grey" }
 		},
 		invalid: {
 			iconColor: "red",
@@ -25,13 +26,13 @@ const CARD_OPTIONS = {
 }
 
 
-const PaymentForm = () => {
+const PaymentForm = ({setClose}) => {
 
-  const [success, setSuccess ] = useState(false)
+  const [success, setSuccess ] = useState();
   const userId = useSelector(state => state.user.data.userId);
-  const stripe = useStripe()
-  const elements = useElements()
-
+  const stripe = useStripe();
+  const elements = useElements();
+  const message = useMessage();
 
   const handleSubmit = async (e) => {
       e.preventDefault()
@@ -52,6 +53,8 @@ const PaymentForm = () => {
 
             if(response.data.success) {
                 console.log("Successful payment")
+                setClose(true)
+                message('Payment is success')
                 setSuccess(true)
             }
 
@@ -60,12 +63,12 @@ const PaymentForm = () => {
         }
     } else {
         console.log(error.message)
+        setSuccess(false)
     }
   }
 
-  return (
+   return (
       <>
-      {!success ? 
         <form onSubmit={handleSubmit}>
             <fieldset className="FormGroup" style={{backgroundColor: '#FFD700', boxShadow: 'none'}}>
                 <div className="FormRow" style={{borderTop: 'none'}}>
@@ -73,13 +76,7 @@ const PaymentForm = () => {
                 </div>
             </fieldset>
             <button className="btn">Pay</button>
-        </form>
-        :
-       <div>
-           <h2 style={{color: 'white'}}>You just bought a sweet spatula congrats this is the best decision of you're life</h2>
-       </div> 
-        }
-          
+        </form>          
       </>
   )
 }
