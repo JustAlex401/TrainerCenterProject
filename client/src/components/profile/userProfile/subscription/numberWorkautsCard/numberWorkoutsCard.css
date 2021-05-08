@@ -1,0 +1,17 @@
+.workoutCard {
+  cursor: pointer;
+  border: 5px solid grey;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.workoutCard:hover {
+  border: 5px solid #FFD700;
+}
+
+.pStyleForCardWorkouts {
+  color: white;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
