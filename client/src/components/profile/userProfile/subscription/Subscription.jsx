@@ -8,7 +8,7 @@ import './subscription.css'
 const Subscription = () => {
 
   const [instance, setInstance] = useState();
-  const [caseWorkouts, setCaseWorkouts] = useState();
+  const [caseWorkouts, setCaseWorkouts] = useState(-1);
   const [close, setClose] = useState();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const Subscription = () => {
         </div>
       </div>
       <div className="constainer col center" style={{marginTop: '50px'}}>
-        <button data-target="modal1" className="btn modal-trigger">Pay</button>
+        <button data-target="modal1" className="btn modal-trigger" disabled={caseWorkouts === -1 ? true : false}>Pay</button>
         <div id="modal1" className="modal">
           <div className="modal-content">
             <Payment setClose={setClose}/>

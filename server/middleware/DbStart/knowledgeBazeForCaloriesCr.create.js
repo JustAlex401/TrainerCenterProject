@@ -1,6 +1,3 @@
-const config = require('config');
-const dbConfig = require('config');
-
 const knowledgeBazeForCaloriesCr = async function knowledgeBazeForCaloriesCr (db){
 
   const t = await db.sequelize.transaction();

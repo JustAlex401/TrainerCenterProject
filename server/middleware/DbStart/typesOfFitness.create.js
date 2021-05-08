@@ -1,4 +1,3 @@
-const config = require('config');
 
 const typesOfFitness = async (db) => {
 
