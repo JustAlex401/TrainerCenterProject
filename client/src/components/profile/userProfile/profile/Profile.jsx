@@ -12,7 +12,7 @@ const Profile = () => {
   const id = useSelector(state => state.user.data.userId);
   const login = useSelector(state => state.user.data.login);
   const profile = useSelector(state => state.profile.data);
-  const exercisesAndTrainer = useSelector(state => state.exercises.data);
+  // const exercisesAndTrainer = useSelector(state => state.exercises.data);
   const payments = useSelector(state => state.payments.data);
   const dispatch = useDispatch();
 
@@ -45,30 +45,32 @@ const Profile = () => {
       </div>
       <div className="center modal1Exercises" style={{marginTop: '50px'}}>
         <button data-target="modal1" class="btn modal-trigger">Exercises and trainer</button>
-        <div className="col modal" id="modal1" style={{marginTop: '30px'}}>
+        <div className="col modal modal1StyleForProfile" id="modal1" style={{marginTop: '30px'}}>
         {/* < div className="col center" style={{width: '500px'}}> */}
-          {exercisesAndTrainer?.trainer &&
+          {profile?.trainer &&
             <div style={{width: '100%'}}>
               <div className="container col center">
                 <p style={{color: 'white', fontSize: '18px'}}>
                   Trainer: 
                 </p>
               </div>
-              {exercisesAndTrainer?.trainer.map((trainer, i) => {
-              return (
-                <TrainerList 
-                  trainer={trainer}
-                  key={i}
-                  index={i}
-                />
-              )})}
+              <div>
+                {profile?.trainer.map((trainer, i) => {
+                return (
+                  <TrainerList 
+                    trainer={trainer}
+                    key={i}
+                    index={i}
+                  />
+                )})}
+              </div>
               <div className="col container" style={{marginBottom: '30px', width: '400px'}}>
                 <ul className="collection with-header listExercises">
                   <li className="collection-header listItemForExercises" style={{color: 'white', borderBottom: '2px solid #FFD700'}}><h4>List of exercises</h4></li>
                   {
-                    exercisesAndTrainer?.exercises?.exercises.map((trainer, i) => {
+                    profile?.exercises?.map((exercise, i) => {
                       return (
-                        <li className="collection-item listItemForExercises" style={{color: 'white', fontSize: '18px'}}>{i+1}. {trainer.exercise}</li>
+                        <li className="collection-item listItemForExercises" style={{color: 'white', fontSize: '18px'}}>{i+1}. {exercise.name}</li>
                       )
                     })
                   }

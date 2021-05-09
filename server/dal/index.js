@@ -14,7 +14,10 @@ const dal = {
     getTrainerByTypeOfFitness: trainerDal.getTrainerByTypeOfFitness,
     updateProfileForTrainer: userDal.updateProfileForTrainer,
     createPayment: userDal.createPayment,
-    getPaymentsForUser: userDal.getPaymentsForUser
+    getPaymentsForUser: userDal.getPaymentsForUser,
+    exercisesPerUser: userDal.exercisesPerUser,
+    getExercisePerUser: userDal.getExercisePerUser,
+    getTrainerDataForEmail: userDal.getTrainerDataForEmail
 }
 
 module.exports=dal;

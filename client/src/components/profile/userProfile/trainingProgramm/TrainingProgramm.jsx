@@ -110,16 +110,19 @@ const TrainingProgramm = () => {
           <div className='col container center'>
             <p style={{color: 'white', fontSize: '18px', marginTop: '60px'}}>Your trainer</p>
           </div>
-          {
-            resultExercisesAndTrainers?.trainer?.map((trainer, i) => {
-              return (
-                <TrainerList 
-                  trainer={trainer}
-                  key={i}
-                  index={i}
-                />
-              )})
-          }
+          <div className="col container" style={{maxWidth: '750px'}}>
+            {
+              resultExercisesAndTrainers?.trainer?.map((trainer, i) => {
+                return (
+                  <TrainerList 
+                    trainer={trainer}
+                    key={i}
+                    index={i}
+                  />
+                )})
+            }
+          </div>
+
           {/* <div className="col container center" style={{marginTop: '30px', marginBottom: '30px'}}> 
             <button className="waves-effect waves-light btn" onClick={() => {resultExercisesAndTrainers = {};}}>Change exercises</button>
           </div> */}

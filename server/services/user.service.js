@@ -3,6 +3,8 @@ const err = require('../middleware/errors/errors.const');
 const { ErrorHandler } = require("../middleware/errors/error");
 const config = require('config');
 const { response } = require('express');
+const trainer = require('../middleware/DbStart/trainer.create');
+const mail = require('../mail/send.mail');
 const stripe = require('stripe')(config.get('stripe_secret_key'));
 
 const getCaloriesServ =  async (userData, userId) => {
@@ -62,7 +64,26 @@ const paymentServ = async (paymentData) => {
       }
     }
     await dal.createPayment(paymentData);
-    return {message: "Payment success", success: true}
+    const exercisesPerUser = await dal.getExercisePerUser(paymentData.userId);
+    console.log("nnnnnnnnnn", exercisesPerUser);
+    const trainerUser = await dal.getTrainerDataForEmail(paymentData.userId);
+    console.log("bbbbbbbbb", trainerUser);
+    if(exercisesPerUser.length && trainerUser.trainer && trainerUser.user) {
+      const resExercisesArr = exercisesPerUser.map((item) => {
+        return item.name;
+      }).toString();
+      mail(trainerUser.trainer.email,
+        `
+          <div>
+            <h4>User Email: ${trainerUser.user.email}</h4>
+            <h4>Exercises:</h4>
+            <p>${resExercisesArr}</p>
+          </div>
+
+        `  
+      );
+    }
+    return {message: "Payment success", success: true};
   } catch (error) {
     console.log(error);
     throw new ErrorHandler(500, err[500]);
@@ -76,6 +97,7 @@ const getExercisesAndTrainerServ = async (id, userData) => {
     console.log(met)
     const exercises = await dal.getExercisesAndTrainerDal(met, userData.typeOfFitness);
     console.log('exercises', exercises)
+    await dal.exercisesPerUser(id, exercises.exercises);
     const trainer = await dal.getTrainerByTypeOfFitness(userData.typeOfFitness);
     response = {exercises: {...exercises}, trainer: [...trainer]}
     await dal.updateProfileForTrainer({trainer: trainer[0], caloriesPerDay: userData.usualyCalories, timeForTraining: userData.time, userId: id});

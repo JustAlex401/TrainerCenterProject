@@ -6,7 +6,7 @@ const TrainerList = ({trainer, key, index}) => {
         <div className='trainerList'>
             <div className="container">
                 <div className="row">
-                    <div className="col s6 offset-s3">
+                    {/* <div className="col s6 offset-s3"> */}
                         <div className="card" style={{borderRadius: '20px', backgroundColor: 'rgba(255,255,255,0.7)'}}>
                             <div className="card-image">
                                 <img src={trainer.photo} alt='oy'></img>
@@ -22,7 +22,7 @@ const TrainerList = ({trainer, key, index}) => {
                                 <p>{trainer.character}</p>
                             </div>
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
         </div>
