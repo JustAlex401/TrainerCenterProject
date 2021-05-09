@@ -22,4 +22,9 @@ routerUsers.post(
   controller.getExercisesAndTrainer
 )
 
+routerUsers.get(
+  '/payments/:id',
+  controller.getPaymentsForUser
+)
+
 module.exports=routerUsers;

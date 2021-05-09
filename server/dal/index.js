@@ -12,7 +12,9 @@ const dal = {
     getProfile: userDal.getProfile,
     getExercisesAndTrainerDal: userDal.getExercisesAndTrainerDal,
     getTrainerByTypeOfFitness: trainerDal.getTrainerByTypeOfFitness,
-    updateProfileForTrainer: userDal.updateProfileForTrainer
+    updateProfileForTrainer: userDal.updateProfileForTrainer,
+    createPayment: userDal.createPayment,
+    getPaymentsForUser: userDal.getPaymentsForUser
 }
 
 module.exports=dal;

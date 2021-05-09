@@ -15,7 +15,7 @@ const purchaseOfSubscriptionsCr = (sequelize, Sequelize) => {
     },
 
     numberWorkouts: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       require: true
     },
 

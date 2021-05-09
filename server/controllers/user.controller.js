@@ -62,9 +62,23 @@ const getExercisesAndTrainer = async (req, res, next) => {
   
 }
 
+const getPaymentsForUser = async (req, res, next) => {
+  
+  try{
+    const data = await Service.getPaymentsForUserServ(req.params.id);
+
+    res.status(200).json(data)
+
+    next();
+  } catch (error) {
+
+  }
+}
+
 module.exports = {
   getCalories,   
   getProfile,
   payment,
-  getExercisesAndTrainer
+  getExercisesAndTrainer,
+  getPaymentsForUser
 }

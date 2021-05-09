@@ -47,7 +47,7 @@ const Subscription = () => {
         <button data-target="modal1" className="btn modal-trigger" disabled={caseWorkouts === -1 ? true : false}>Pay</button>
         <div id="modal1" className="modal">
           <div className="modal-content">
-            <Payment setClose={setClose}/>
+            <Payment setClose={setClose} item={workoutArray[caseWorkouts]}/>
           </div>
         </div>
       </div>

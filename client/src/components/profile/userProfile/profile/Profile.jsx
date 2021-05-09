@@ -5,6 +5,7 @@ import TrainerList from '../../../trainerList/TrainerList';
 import { getUserProfileForTraining } from '../actions';
 import './profile.css';
 import M from 'materialize-css';
+import { getPayments } from '../subscription/actions';
 
 const Profile = () => {
 
@@ -12,7 +13,12 @@ const Profile = () => {
   const login = useSelector(state => state.user.data.login);
   const profile = useSelector(state => state.profile.data);
   const exercisesAndTrainer = useSelector(state => state.exercises.data);
+  const payments = useSelector(state => state.payments.data);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPayments());
+  }, [])
 
   useEffect(async () => {
     dispatch(getUserProfileForTraining());
@@ -26,7 +32,7 @@ const Profile = () => {
   return (
     <div style={{height: '700px', overflow: 'auto'}}>
       <div className='col container center'>
-        {console.log(exercisesAndTrainer)}
+        {console.log(payments)}
         <p style={{color: 'white', fontSize: '30px'}}>profile</p>
       </div>
       <div className='col container' style={{maxWidth: '350px'}}>
@@ -71,6 +77,32 @@ const Profile = () => {
             </div>
           }
         </div>
+      </div>
+      <div className="center  modal2Payments" style={{marginTop: '50px'}}>
+        <button data-target="modal2" class="btn modal-trigger">List of payments</button>
+          <div className="col modal" id="modal2" style={{marginTop: '30px'}}>
+            {payments.length ?
+                <div>
+                  <ul className="collection with-header listPayments" style={{color: 'white'}}>
+                    <li className="collection-header listItemForPayments" style={{color: 'white'}}><h4>Payments</h4></li>
+                    {
+                      payments.map((item) => {
+                        return (
+                          <li className="collection-item listItemForPayments" style={{color: 'white'}}>
+                            price: {item.price} | numberVisits: {item.numberWorkouts} | date: {item.purchaseDate}
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+              :
+                <div>
+                  <p style={{color: 'white', fontSize: '20px', marginTop: '30px'}}>You haven't payments</p>
+                </div>
+            }
+          </div>
+
       </div>
     </div>
   )

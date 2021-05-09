@@ -2,6 +2,7 @@ const dal = require('../dal/index');
 const err = require('../middleware/errors/errors.const');
 const { ErrorHandler } = require("../middleware/errors/error");
 const config = require('config');
+const { response } = require('express');
 const stripe = require('stripe')(config.get('stripe_secret_key'));
 
 const getCaloriesServ =  async (userData, userId) => {
@@ -38,16 +39,32 @@ const paymentServ = async (paymentData) => {
   console.log('paymentData', paymentData)
   let {amount, id} = paymentData;
   try {
-    const payment = await stripe.paymentIntents.create({
-      amount,
-      currency: "USD",
-      description: "Spatula company",
-      payment_method: id,
-      confirm: true
-    })
-    console.log("Payment", payment);
+    console.log('amount', amount)
+    if(amount) {
+      const payment = await stripe.paymentIntents.create({
+        amount: Number.parseInt(amount) * 100,
+        currency: "USD",
+        description: "Training",
+        payment_method: id,
+        confirm: true
+      })
+      console.log("Payment", payment);
+    }
+    if(!amount) {
+      const paymentsRes = await dal.getPaymentsForUser(paymentData.userId); 
+      console.log('paymentsPeassssssssssss', paymentsRes);
+      const aaa = paymentsRes.find((item) => {
+        return item.numberWorkouts === 'trial';
+      })
+      console.log('AAA', aaa)
+      if(aaa){
+        return {message: 'You can buy only one trial viisit'}
+      }
+    }
+    await dal.createPayment(paymentData);
     return {message: "Payment success", success: true}
-  } catch (err) {
+  } catch (error) {
+    console.log(error);
     throw new ErrorHandler(500, err[500]);
   }
 } 
@@ -68,9 +85,22 @@ const getExercisesAndTrainerServ = async (id, userData) => {
   return response;
 }
 
+const getPaymentsForUserServ = async (id) => {
+  let data;
+  try{
+    data = await dal.getPaymentsForUser(id);
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  return data;
+}
+
 module.exports = {
   getCaloriesServ,
   getProfileServ,
   paymentServ,
-  getExercisesAndTrainerServ
+  getExercisesAndTrainerServ,
+  getPaymentsForUserServ
 }
