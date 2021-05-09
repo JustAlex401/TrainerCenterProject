@@ -258,6 +258,38 @@ const getTrainerDataForEmail = async (id) => {
   return result;
 }
 
+const pushWeight = async (id, weight) => {
+
+  try{
+    await db.sequelize.query(
+      `
+        insert into userWeights (weight, date, userId) values (${weight}, NOW(), ${id});
+      `,
+      {type: QueryTypes.INSERT}
+      );
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+
+}
+
+const getWeights = async (id) => {
+  let result
+  try{
+    result = await db.sequelize.query(
+      `
+        select * from userWeights where userId = ${id} order by date desc;
+      `,
+      {type: QueryTypes.SELECT}
+      );
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  return result;
+}
+
 module.exports = {
   getAdditionalOptionForCalories,
   saveToProfile,
@@ -268,5 +300,7 @@ module.exports = {
   getPaymentsForUser,
   exercisesPerUser,
   getExercisePerUser,
-  getTrainerDataForEmail
+  getTrainerDataForEmail,
+  pushWeight,
+  getWeights
 }

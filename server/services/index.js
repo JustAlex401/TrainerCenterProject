@@ -12,7 +12,9 @@ const Service = {
     getProfileServ: userServ.getProfileServ,
     paymentServ: userServ.paymentServ,
     getExercisesAndTrainerServ: userServ.getExercisesAndTrainerServ,
-    getPaymentsForUserServ: userServ.getPaymentsForUserServ
+    getPaymentsForUserServ: userServ.getPaymentsForUserServ,
+    pushWeightServ: userServ.pushWeightServ,
+    getWeightServ: userServ.getWeightServ
 }
 
 module.exports=Service;

@@ -27,4 +27,14 @@ routerUsers.get(
   controller.getPaymentsForUser
 )
 
+routerUsers.post(
+  '/push-weight/:id',
+  controller.pushWeight
+)
+
+routerUsers.get(
+  '/get-weight/:id',
+  controller.getWeight
+)
+
 module.exports=routerUsers;
