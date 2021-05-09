@@ -4,6 +4,7 @@ import { getUserProfileForTraining } from '../actions';
 import M from 'materialize-css';
 import { getExercisesAndTrainers } from './actions';
 import TrainerList from '../../../trainerList/TrainerList';
+import './trainingProgramm.css';
 
 const TrainingProgramm = () => {
 
@@ -26,10 +27,10 @@ const TrainingProgramm = () => {
     M.FormSelect.init(elems);
   }, [])
 
-  useEffect(() => {
-    const elems = document.querySelectorAll('select');
-    M.FormSelect.init(elems);
-  }, [oneMore])
+  // useEffect(() => {
+  //   const elems = document.querySelectorAll('select');
+  //   M.FormSelect.init(elems);
+  // }, [oneMore])
 
   useEffect(async () => {
     dispatch(getUserProfileForTraining());
@@ -56,17 +57,17 @@ const TrainingProgramm = () => {
     setOneMore(false);
   }
 
-  useEffect(() => {
-    console.log(oneMore)
-  }, [oneMore])
+  // useEffect(() => {
+  //   console.log(oneMore)
+  // }, [oneMore])
 
-  const setOneMoreFunc = () => {
-    setOneMore(true);
-  }
+  // const setOneMoreFunc = () => {
+  //   setOneMore(true);
+  // }
 
   return ( 
     <div style={{height: '700px', overflow: 'auto'}}>
-      {oneMore ?
+      {!resultExercisesAndTrainers ?
         <div className="col container center" style={{marginTop: '50px'}}>
           <p style={{color: 'white', fontSize: '20px', marginBottom: '50px'}}>Enter your data for selection a training: </p>
           <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
@@ -93,18 +94,25 @@ const TrainingProgramm = () => {
         </div>
       :
         <div className="col" style={{marginTop: '50px'}}>
-          <div className="col container center">
-            <p style={{color: 'white', fontSize: '18px'}}>You can use this exercises for training for lose calories:</p>
+          <div className="col container" style={{width: '500px'}}>
+            {/* <p style={{color: 'white', fontSize: '18px'}}>You can use this exercises for training for lose calories:</p> */}
             {resultExercisesAndTrainers?.exercises?.limit && 
               <p style={{color: 'white', fontSize: '20px'}}>You can use this exercises spending more time for training</p>
             }
-            {
-              resultExercisesAndTrainers?.exercises?.exercises.map((trainer, i) => {
-                return (
-                  <p style={{color: 'white', fontSize: '18px'}}>{i+1}: {trainer.exercise}</p>
-                )
-              })
-            }
+            <ul className="collection with-header listExercises">
+              <li className="collection-header listItemForExercises" style={{color: 'white', borderBottom: '2px solid #FFD700'}}><h4>List of exercises</h4></li>
+              {
+                resultExercisesAndTrainers?.exercises?.exercises.map((trainer, i) => {
+                  return (
+                    <li className="collection-item listItemForExercises" style={{color: 'white', fontSize: '18px'}}>{i+1}. {trainer.exercise}</li>
+                  )
+                })
+              }
+            </ul>
+
+          </div>
+          <div className='col container center'>
+            <p style={{color: 'white', fontSize: '18px', marginTop: '60px'}}>Your trainer</p>
           </div>
           {
             resultExercisesAndTrainers?.trainer?.map((trainer, i) => {
@@ -116,9 +124,9 @@ const TrainingProgramm = () => {
                 />
               )})
           }
-          <div className="col container center" style={{marginTop: '70px'}}> 
-            <button className="waves-effect waves-light btn" onClick={setOneMoreFunc}>Ok</button>
-          </div>
+          {/* <div className="col container center" style={{marginTop: '30px', marginBottom: '30px'}}> 
+            <button className="waves-effect waves-light btn" onClick={setOneMoreFunc}>Change exercises</button>
+          </div> */}
         </div>
       }
     </div>
