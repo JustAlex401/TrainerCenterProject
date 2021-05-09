@@ -101,6 +101,7 @@ const caloriesAndExercises = async (db) => {
       {exercise: 'Revolved Triangle Pose', met: 8.7, typesOfFitnessId: 5},
       {exercise: 'Headstand', met: 8.6, typesOfFitnessId: 5},
       {exercise: 'Shoulder stand', met: 8.7, typesOfFitnessId: 5},
+      {exercise: 'Mountain position', met: 5.71, typesOfFitnessId: 5}
     ]
     ).catch(err => {
         console.log(err.message);

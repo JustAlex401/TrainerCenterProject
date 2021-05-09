@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const config = require('config');
 
-const mail = function sendMail(email, login){
+const mail = function sendMail(email, html){
     let transporter = nodemailer.createTransport({
         service: 'Gmail',
         host: 'smtp.gmail.com',
@@ -17,7 +17,7 @@ const mail = function sendMail(email, login){
         from: `"ap8432446" <${config.get('emailSend')}>`,
         to: `${email}`,
         subject: 'Teste Templete ✔',
-        html: `<a href="http://localhost:3000/api/auth/activate?login=${login}">Verify</a>`
+        html: html
     };
     
     transporter.sendMail(mailOptions, (error, info) => {

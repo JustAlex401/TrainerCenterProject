@@ -27,8 +27,9 @@ const registrationServ = async function registrationServ(regForm){
         }
 
         const hashLogin = CryptoJS.AES.encrypt(regForm.login, config.get('jwtSecret')).toString();
+        const html = `<a href="http://localhost:3000/api/auth/activate?login=${hashLogin}">Verify</a>`
 
-        mail(regForm.email, hashLogin);
+        mail(regForm.email, html);
     } catch (error) {
         throw new ErrorHandler(500, err[500]);
     }

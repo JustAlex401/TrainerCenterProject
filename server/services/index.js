@@ -11,7 +11,8 @@ const Service = {
     getCaloriesServ: userServ.getCaloriesServ,
     getProfileServ: userServ.getProfileServ,
     paymentServ: userServ.paymentServ,
-    getExercisesAndTrainerServ: userServ.getExercisesAndTrainerServ
+    getExercisesAndTrainerServ: userServ.getExercisesAndTrainerServ,
+    getPaymentsForUserServ: userServ.getPaymentsForUserServ
 }
 
 module.exports=Service;

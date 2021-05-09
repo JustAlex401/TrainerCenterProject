@@ -77,8 +77,8 @@ const trainer = async function trainer (db){
           photo: 'https://cs11.pikabu.ru/post_img/big/2018/12/06/7/1544091037198643429.jpg',
           character: 'I help new people confidently enter sports life, and those who have got used to it, strengthen themselves and get the best results. Together we will build your body.',
           age: 26,
-          weight: 172,
-          height: 61,
+          weight: 61,
+          height: 172,
           typesOfFitnessId: 2,
       },  { transaction: t }).then(data => {
           trainerId=data.dataValues.id;

@@ -98,9 +98,72 @@ const getExercisesAndTrainerDal = async (met, typeOfFitness) => {
   return result;
 }
 
+const updateProfileForTrainer = async (updateData) => {
+  let data;
+
+console.log('updateData', updateData)
+
+  try{
+      data = await db.sequelize.query(
+        `
+          update profiles set 
+                trainerId = ${updateData.trainer.trainerId}, 
+                caloriesPerDay = ${updateData.caloriesPerDay}, 
+                timeForTraining = ${updateData.timeForTraining}
+            where userId = ${updateData.userId};
+        `,
+        {type: QueryTypes.UPDATE}
+        );
+  } catch (error) {
+    console.log(error)
+      throw new ErrorHandler(500, err[500]);
+  }
+
+}
+
+const createPayment = async (paymentData) => {
+  let data;
+
+  console.log('paymentDataaaa', paymentData);
+  try{
+      data = await db.sequelize.query(
+        `
+          insert into purchaseOfSubscriptions (price, numberWorkouts, purchaseDate, userId)
+              values(${paymentData.amount}, '${paymentData.number}', NOW(), ${paymentData.userId})
+        `,
+        {type: QueryTypes.INSERT}
+        );
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  
+}
+
+const getPaymentsForUser = async (id) => {
+  let data;
+
+  try{
+      data = await db.sequelize.query(
+        `
+          select * from purchaseOfSubscriptions where userId = ${id}
+        `,
+        {type: QueryTypes.SELECT}
+        );
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  
+  return data;
+}
+
 module.exports = {
   getAdditionalOptionForCalories,
   saveToProfile,
   getProfile,
-  getExercisesAndTrainerDal
+  getExercisesAndTrainerDal,
+  updateProfileForTrainer,
+  createPayment,
+  getPaymentsForUser
 }

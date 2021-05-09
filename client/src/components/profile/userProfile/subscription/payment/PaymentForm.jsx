@@ -26,7 +26,7 @@ const CARD_OPTIONS = {
 }
 
 
-const PaymentForm = ({setClose}) => {
+const PaymentForm = ({setClose, item}) => {
 
   const [success, setSuccess ] = useState();
   const userId = useSelector(state => state.user.data.userId);
@@ -46,10 +46,17 @@ const PaymentForm = ({setClose}) => {
         try {
             const {id} = paymentMethod
             const response = await axios.post("/api/user/payment", {
-                amount: 1000,
+                amount: item.price,
+                number: item.number,
                 id,
                 userId
             })
+
+            if(response.data.message){
+              message(response.data.message);
+              setClose(true);
+              return;
+            }
 
             if(response.data.success) {
                 console.log("Successful payment")
@@ -70,6 +77,7 @@ const PaymentForm = ({setClose}) => {
    return (
       <>
         <form onSubmit={handleSubmit}>
+          {console.log(item)}
             <fieldset className="FormGroup" style={{backgroundColor: '#FFD700', boxShadow: 'none'}}>
                 <div className="FormRow" style={{borderTop: 'none'}}>
                     <CardElement options={CARD_OPTIONS}/>
