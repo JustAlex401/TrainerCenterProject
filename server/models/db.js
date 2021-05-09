@@ -53,6 +53,7 @@ db.role.hasMany(db.user);
 db.typesOfFitness.hasMany(db.trainer);
 db.typesOfFitness.hasMany(db.caloriesAndExercises);
 db.user.hasOne(db.profile);
+db.trainer.hasMany(db.profile);
 db.KnowledgeBazeForCalories.hasMany(db.profile);
 db.user.hasMany(db.purchaseOfSubscriptions);
 

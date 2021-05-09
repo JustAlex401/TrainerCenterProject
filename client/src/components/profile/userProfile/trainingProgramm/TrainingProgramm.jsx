@@ -10,8 +10,8 @@ const TrainingProgramm = () => {
 
   const profileData = useSelector(state => state.profile.data);
   const id = useSelector(state => state.user.data.userId);
-  const resultExercisesAndTrainers = useSelector(state => state.exercises.data);
-  const [oneMore, setOneMore] = useState(true);
+  let resultExercisesAndTrainers = useSelector(state => state.exercises.data);
+  const [oneMore, setOneMore] = useState();
   const dispatch = useDispatch();
   const [disable, setDisable] = useState();
   const [data, setData] = useState({
@@ -26,11 +26,6 @@ const TrainingProgramm = () => {
     const elems = document.querySelectorAll('select');
     M.FormSelect.init(elems);
   }, [])
-
-  // useEffect(() => {
-  //   const elems = document.querySelectorAll('select');
-  //   M.FormSelect.init(elems);
-  // }, [oneMore])
 
   useEffect(async () => {
     dispatch(getUserProfileForTraining());
@@ -57,41 +52,42 @@ const TrainingProgramm = () => {
     setOneMore(false);
   }
 
-  // useEffect(() => {
-  //   console.log(oneMore)
-  // }, [oneMore])
+  useEffect(() => {
+    console.log(oneMore)
+  }, [oneMore])
 
-  // const setOneMoreFunc = () => {
+  // const handleOneMore = () => {
   //   setOneMore(true);
   // }
 
   return ( 
     <div style={{height: '700px', overflow: 'auto'}}>
-      {!resultExercisesAndTrainers ?
-        <div className="col container center" style={{marginTop: '50px'}}>
-          <p style={{color: 'white', fontSize: '20px', marginBottom: '50px'}}>Enter your data for selection a training: </p>
-          <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
-            <input className="Inp" id='usualyCalories' type="number" style={{marginTop: '10px'}} name='usualyCalories' onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}} autoComplete='off'/>
-            <label className='labelStyle' for='usualyCalories'>Calories you eating usualy should be more then needed calories(kcals)</label>
+      {!resultExercisesAndTrainers?.trainer ?
+        // oneMore ?
+          <div className="col container center" style={{marginTop: '50px'}}>
+            <p style={{color: 'white', fontSize: '20px', marginBottom: '50px'}}>Enter your data for selection a training: </p>
+            <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
+              <input className="Inp" id='usualyCalories' type="number" name='usualyCalories' onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}} autoComplete='off'/>
+              <label className='labelStyle' for='usualyCalories'>{data.usualyCalories > data.caloriesProfile ? 'calories you eat per day (kcals)' : 'this calories should be more thaan calories in profile'}</label>
+            </div>
+            <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
+              <input className="Inp" id="time" type="number" name='time' onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}} autoComplete='off'/>
+              <label className='labelStyle' for='time'>Time (min)</label>
+            </div>
+            <div className="input-field col container center" style={{width: '400px', marginBottom: '40px'}}>
+              <select className="selectStyle" name="typeOfFitness" onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}}>
+                <option value="" disabled selected>Choose your option</option>
+                <option value="1">Bodybuilding</option>
+                <option value="2">Stretching</option>
+                <option value="3">Crossfit</option>
+                <option value="4">Powerlifting</option>
+                <option value="5">Yoga</option>
+              </select>
+            </div>
+            <div style={{marginTop: '30px'}}>
+              <button className="waves-effect waves-light btn" disabled={disable} onClick={getExercises}>Ok</button>
+            </div>
           </div>
-          <div className='input-field row' style={{width: '400px', marginBottom: '30px'}}>
-            <input className="Inp" id="time" type="number" name='time' onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}} autoComplete='off'/>
-            <label className='labelStyle' for='time'>Time (min)</label>
-          </div>
-          <div className="input-field col container center" style={{width: '400px', marginBottom: '40px'}}>
-            <select className="selectStyle" name="typeOfFitness" onChange={(e) => {setData({...data, [e.target.name]: Number.parseInt(e.target.value)})}}>
-              <option value="" disabled selected>Choose your option</option>
-              <option value="1">Bodybuilding</option>
-              <option value="2">Stretching</option>
-              <option value="3">Crossfit</option>
-              <option value="4">Powerlifting</option>
-              <option value="5">Yoga</option>
-            </select>
-          </div>
-          <div style={{marginTop: '30px'}}>
-            <button className="waves-effect waves-light btn" disabled={disable} onClick={getExercises}>Ok</button>
-          </div>
-        </div>
       :
         <div className="col" style={{marginTop: '50px'}}>
           <div className="col container" style={{width: '500px'}}>
@@ -125,7 +121,7 @@ const TrainingProgramm = () => {
               )})
           }
           {/* <div className="col container center" style={{marginTop: '30px', marginBottom: '30px'}}> 
-            <button className="waves-effect waves-light btn" onClick={setOneMoreFunc}>Change exercises</button>
+            <button className="waves-effect waves-light btn" onClick={() => {resultExercisesAndTrainers = {};}}>Change exercises</button>
           </div> */}
         </div>
       }

@@ -98,9 +98,33 @@ const getExercisesAndTrainerDal = async (met, typeOfFitness) => {
   return result;
 }
 
+const updateProfileForTrainer = async (updateData) => {
+  let data;
+
+console.log('updateData', updateData)
+
+  try{
+      data = await db.sequelize.query(
+        `
+          update profiles set 
+                trainerId = ${updateData.trainer.trainerId}, 
+                caloriesPerDay = ${updateData.caloriesPerDay}, 
+                timeForTraining = ${updateData.timeForTraining}
+            where userId = ${updateData.userId};
+        `,
+        {type: QueryTypes.UPDATE}
+        );
+  } catch (error) {
+    console.log(error)
+      throw new ErrorHandler(500, err[500]);
+  }
+
+}
+
 module.exports = {
   getAdditionalOptionForCalories,
   saveToProfile,
   getProfile,
-  getExercisesAndTrainerDal
+  getExercisesAndTrainerDal,
+  updateProfileForTrainer
 }

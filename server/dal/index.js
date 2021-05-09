@@ -11,7 +11,8 @@ const dal = {
     saveToProfile: userDal.saveToProfile,
     getProfile: userDal.getProfile,
     getExercisesAndTrainerDal: userDal.getExercisesAndTrainerDal,
-    getTrainerByTypeOfFitness: trainerDal.getTrainerByTypeOfFitness
+    getTrainerByTypeOfFitness: trainerDal.getTrainerByTypeOfFitness,
+    updateProfileForTrainer: userDal.updateProfileForTrainer
 }
 
 module.exports=dal;

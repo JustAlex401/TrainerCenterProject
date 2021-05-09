@@ -33,6 +33,17 @@ const profileCr = (sequelize, Sequelize) => {
       type: Sequelize.DOUBLE,
       allowNull: true,
     },
+
+    caloriesPerDay: {
+      type: Sequelize.DOUBLE,
+      allowNull: true,
+    },
+
+    timeForTraining: {
+      type: Sequelize.DOUBLE,
+      allowNull: true,
+    }
+
   },
   {
       indexes: [

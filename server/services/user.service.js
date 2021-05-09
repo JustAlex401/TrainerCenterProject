@@ -61,6 +61,7 @@ const getExercisesAndTrainerServ = async (id, userData) => {
     console.log('exercises', exercises)
     const trainer = await dal.getTrainerByTypeOfFitness(userData.typeOfFitness);
     response = {exercises: {...exercises}, trainer: [...trainer]}
+    await dal.updateProfileForTrainer({trainer: trainer[0], caloriesPerDay: userData.usualyCalories, timeForTraining: userData.time, userId: id});
   } catch (err) {
     throw new ErrorHandler(500, err[500]);
   }
