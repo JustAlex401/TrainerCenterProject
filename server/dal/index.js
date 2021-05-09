@@ -17,7 +17,9 @@ const dal = {
     getPaymentsForUser: userDal.getPaymentsForUser,
     exercisesPerUser: userDal.exercisesPerUser,
     getExercisePerUser: userDal.getExercisePerUser,
-    getTrainerDataForEmail: userDal.getTrainerDataForEmail
+    getTrainerDataForEmail: userDal.getTrainerDataForEmail,
+    pushWeight: userDal.pushWeight,
+    getWeights: userDal.getWeights
 }
 
 module.exports=dal;

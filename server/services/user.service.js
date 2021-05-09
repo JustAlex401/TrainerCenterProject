@@ -2,7 +2,6 @@ const dal = require('../dal/index');
 const err = require('../middleware/errors/errors.const');
 const { ErrorHandler } = require("../middleware/errors/error");
 const config = require('config');
-const { response } = require('express');
 const trainer = require('../middleware/DbStart/trainer.create');
 const mail = require('../mail/send.mail');
 const stripe = require('stripe')(config.get('stripe_secret_key'));
@@ -119,10 +118,59 @@ const getPaymentsForUserServ = async (id) => {
   return data;
 }
 
+const pushWeightServ = async (id, weightData) => {
+  let result;
+  console.log("VVVVVVVVVVVVVVVVVVVVVV")
+  try{
+    await dal.pushWeight(id, weightData.weight);
+    result = await dal.getWeights(id);
+    if(result.length % 3 === 0){
+      const exercisesPerUser = await dal.getExercisePerUser(id);
+      console.log("nnnnnnnnnn", exercisesPerUser);
+      const trainerUser = await dal.getTrainerDataForEmail(id);
+      console.log("bbbbbbbbb", trainerUser);
+      if(exercisesPerUser.length && trainerUser.trainer && trainerUser.user) {
+        const resWeights = result.map((item) => {
+          return JSON.stringify({date: item.date, weight: item.weight});
+        }).toString();
+        mail(trainerUser.trainer.email,
+          `
+            <div>
+              <h4>User Email: ${trainerUser.user.email}</h4>
+              <h4>Weights:</h4>
+              <p>${resWeights}</p>
+            </div>
+  
+          `  
+        );
+      }
+    }
+    console.log(result)
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  return result;
+}
+
+const getWeightServ = async (id) => {
+  let result;
+  try{
+    result = await dal.getWeights(id);
+    console.log("AAAA", result)
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  return result;
+}
+
 module.exports = {
   getCaloriesServ,
   getProfileServ,
   paymentServ,
   getExercisesAndTrainerServ,
-  getPaymentsForUserServ
+  getPaymentsForUserServ,
+  pushWeightServ,
+  getWeightServ
 }

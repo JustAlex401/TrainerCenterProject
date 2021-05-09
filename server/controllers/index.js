@@ -12,7 +12,9 @@ const controller = {
     getProfile: userController.getProfile,
     payment: userController.payment,
     getExercisesAndTrainer: userController.getExercisesAndTrainer,
-    getPaymentsForUser: userController.getPaymentsForUser
+    getPaymentsForUser: userController.getPaymentsForUser,
+    pushWeight: userController.pushWeight,
+    getWeight: userController.getWeight
 }
 
 

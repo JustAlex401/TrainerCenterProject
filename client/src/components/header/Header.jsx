@@ -21,7 +21,7 @@ const Header = () =>{
   }, [location]);
 
   return (
-    <div className="root">
+      <div>
       <div className="row">
         <nav className="header">
           <div className="nav-wrapper">

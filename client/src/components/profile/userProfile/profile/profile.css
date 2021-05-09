@@ -24,4 +24,39 @@
 
 .modal {
   backdrop-filter: blur(15px) !important;
+  margin-top: 0 !important;
+  /* height: 500px;
+  width: 900px; */
 }
+
+/* .modal3Style {
+  margin-top: 0;
+  height: 500px;
+  width: 900px;
+}
+
+.datepicker-table {
+  background-color: white;
+}
+
+.datepicker-date-display, .datepicker-table td.is-selected, .timepicker-digital-display {
+  background-color: #FFD700;
+}
+
+.datepicker-date-display .date-text, .datepicker-date-display .year-text{
+  color: black;
+}
+
+.datepicker-done, .datepicker-cancel, .timepicker-close {
+  color: #FFD700;
+}
+
+.month-prev, .month-next {
+  background-color: #FFD700;
+  border-radius: 20%;
+}
+
+.datepicker-table td.is-selected, .timepicker-span-hours, .timepicker-span-minutes, .timepicker-text-container, .timepicker-span-am-pm div {
+  color: black;
+  font-weight: bolder;
+} */

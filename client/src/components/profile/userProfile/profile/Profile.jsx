@@ -1,4 +1,4 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TrainerList from '../../../trainerList/TrainerList';
@@ -6,6 +6,7 @@ import { getUserProfileForTraining } from '../actions';
 import './profile.css';
 import M from 'materialize-css';
 import { getPayments } from '../subscription/actions';
+import axios from 'axios';
 
 const Profile = () => {
 
@@ -13,8 +14,14 @@ const Profile = () => {
   const login = useSelector(state => state.user.data.login);
   const profile = useSelector(state => state.profile.data);
   // const exercisesAndTrainer = useSelector(state => state.exercises.data);
+  const [response, setResponse] = useState();
   const payments = useSelector(state => state.payments.data);
   const dispatch = useDispatch();
+  const [dataForWeight, setDataForWeight] = useState({
+    date: '',
+    time: '',
+    weight: 0
+  });
 
   useEffect(() => {
     dispatch(getPayments());
@@ -25,14 +32,32 @@ const Profile = () => {
   }, [id])
 
   useEffect(() => {
-    const elems = document.querySelectorAll('.modal');
-    M.Modal.init(elems, {});
+    console.log(dataForWeight)
+  }, [dataForWeight])
+
+  useEffect(() => {
+    const elems1 = document.querySelectorAll('.modal');
+    M.Modal.init(elems1, {});
+    // const elems2 = document.querySelectorAll('.datepicker');
+    // M.Datepicker.init(elems2, {});
+    // const elems3 = document.querySelectorAll('.timepicker');
+    // M.Timepicker.init(elems3, {});
   }, [])
+
+  useEffect( async () => {
+    const getWeights = await axios.get(`/api/user/get-weight/${id}`);
+    setResponse(getWeights)
+  }, []);
+
+  const handleClick = async () => {
+    const response2 = await axios.post(`/api/user/push-weight/${id}`, dataForWeight);
+    setResponse(response2)
+  }
 
   return (
     <div style={{height: '700px', overflow: 'auto'}}>
       <div className='col container center'>
-        {console.log(payments)}
+        {/* {console.log(payments)} */}
         <p style={{color: 'white', fontSize: '30px'}}>profile</p>
       </div>
       <div className='col container' style={{maxWidth: '350px'}}>
@@ -105,6 +130,40 @@ const Profile = () => {
             }
           </div>
 
+      </div>
+      <div className="center modal3Payments" style={{marginTop: '50px'}}>
+        <button data-target="modal3" className="btn modal-trigger">Weight Controller</button>
+          <div className="col modal modal3Style" id="modal3" style={{marginTop: '30px', height: '700px', marginTop: '0px !important'}}>
+            <div className="col container center">
+              <p style={{color: 'white', fontSize: '20px'}}>Your personal weight controller</p>
+            </div>
+
+            {/* <div className='input-field row container center' style={{width: '400px'}}>
+              <input type="text" className="datepicker" onSelect={aaa}/>
+              <label className='labelStyle' for='date' style={{width: '380px'}}>Date</label>
+            </div>
+            <div className='input-field row container center' style={{width: '400px'}}>
+              <input type="text" name="time" id="time" onSelect={(e) => {setDataForWeight({...dataForWeight, ['time']: e.target?.M_Datepicker?.time + e.target?.M_Datepicker?.amOrPm})}} className="timepicker" style={{width: '390px'}}/>
+              <label className='labelStyle' for='time' style={{width: '380px'}}>Time</label>
+            </div> */}
+
+            <div className='input-field row left-align' style={{width: '400px', marginBottom: '30px'}}>
+              <input className="Inp" id="weight" type="number" name='weight' style={{width: '300px', marginRight: '20px'}} onChange={(e) => {setDataForWeight({...dataForWeight, [e.target.name]: e.target.value})}}/*autoComplete='off'*//>
+              <label className='labelStyle' for='weight'>Weight</label>
+              <button className="waves-effect waves-light btn" onClick={handleClick}>send</button>
+            </div>
+
+            <div className="divider container center" style={{ color: 'white', marginBottom: '50px', width: '90%'}}></div>
+            <ul className="collection with-header listPayments" style={{color: 'white'}}>
+              {
+                response?.data?.map((item) => {
+                  return (
+                    <li className="collection-item listItemForPayments" style={{color: 'white'}}>weight: {item.weight} | date: {item.date}</li>
+                  )
+                })
+              }
+            </ul>
+          </div>
       </div>
     </div>
   )
