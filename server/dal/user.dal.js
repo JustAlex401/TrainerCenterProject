@@ -5,6 +5,7 @@ const Profile = db.profile;
 const err = require('../middleware/errors/errors.const');
 const { ErrorHandler } = require("../middleware/errors/error");
 const {QueryTypes} = require('sequelize');
+const { response } = require("express");
 
 const getAdditionalOptionForCalories = async (id) => {
 
@@ -53,20 +54,38 @@ const saveToProfile = async (profileData, userId) => {
 
 const getProfile = async (id) => {
 
+  let data1;
+  let exercises;
+  let trainer;
   let data;
 
   try{
-      data = await db.sequelize.query(
+      data1 = await db.sequelize.query(
         `
           select * from profiles where userId = ${id};
         `,
         {type: QueryTypes.SELECT}
         );
+
+        exercises = await db.sequelize.query(
+        `
+          select * from exercisesPerUsers where userId = ${id};
+        `,
+        {type: QueryTypes.SELECT}
+        );
+
+        trainer = await db.sequelize.query(
+          `
+            select * from trainers t join profiles p on t.id = p.trainerId where userId = ${id};
+          `,
+          {type: QueryTypes.SELECT}
+          );
+      data={...data1[0], exercises, trainer}
   } catch (error) {
       throw new ErrorHandler(500, err[500]);
   }
 
-  return data[0];
+  return data;
 }
 
 const getExercisesAndTrainerDal = async (met, typeOfFitness) => {
@@ -158,6 +177,87 @@ const getPaymentsForUser = async (id) => {
   return data;
 }
 
+const exercisesPerUser = async (id, exercises) => {
+  let data;
+
+  console.log("VVVVVVVVVVVVVV", exercises)
+  const t = await db.sequelize.transaction();
+
+  try{
+    await db.sequelize.query(
+      `
+        delete from exercisesPerUsers where userId = ${id};
+      `,
+      {type: QueryTypes.DELETE}, { transaction: t })
+
+    const saveData = exercises.map((item) => {
+      return {name: item.exercise, userId: id}
+    })
+    console.log("CCCCCCCCCCCCCDDDDDDDD", saveData)
+    data = await db.exercisesPerUser.bulkCreate(saveData,
+        {type: QueryTypes.INSERT}, { transaction: t }
+        );
+    await t.commit();
+
+  } catch (error) {
+    console.log(error)
+    await t.rollback();
+    throw new ErrorHandler(500, err[500]);
+  }
+  
+}
+
+const getExercisePerUser = async (id) => {
+  let data;
+
+  try{
+      data = await db.sequelize.query(
+        `
+          select * from exercisesPerUsers where userId = ${id}
+        `,
+        {type: QueryTypes.SELECT}
+        );
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  
+  return data;
+}
+
+const getTrainerDataForEmail = async (id) => {
+  let data;
+  let user;
+  let result;
+
+  try{
+
+    user = await db.sequelize.query(
+      `
+        select login, email from users where id = ${id};
+      `,
+      {type: QueryTypes.SELECT}
+      );
+
+      data = await db.sequelize.query(
+        `
+          select * from trainers t join profiles p on t.id = p.trainerId
+              join users u on u.trainerId = t.id where p.userId = ${id};
+        `,
+        {type: QueryTypes.SELECT}
+        );
+
+        console.log("AFAFAFAF", user)
+      result = {trainer: {...data[0]}, user: {...user[0]}}
+      console.log("CBCBCBCBCBCBCBCB", result)
+  } catch (error) {
+    console.log(error)
+    throw new ErrorHandler(500, err[500]);
+  }
+  
+  return result;
+}
+
 module.exports = {
   getAdditionalOptionForCalories,
   saveToProfile,
@@ -165,5 +265,8 @@ module.exports = {
   getExercisesAndTrainerDal,
   updateProfileForTrainer,
   createPayment,
-  getPaymentsForUser
+  getPaymentsForUser,
+  exercisesPerUser,
+  getExercisePerUser,
+  getTrainerDataForEmail
 }
