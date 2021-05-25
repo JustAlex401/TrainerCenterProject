@@ -38,11 +38,13 @@ const Header = () =>{
           {
             trainerList.map((trainer, i) => {
               return (
-                <TrainerList 
-                  trainer={trainer}
-                  key={i}
-                  index={i}
-                />
+                <div className="col container" style={{maxWidth: '700px'}}>
+                  <TrainerList 
+                    trainer={trainer}
+                    key={i}
+                    index={i}
+                  />
+                </div>
               )})
           }
           <div className='col'>

@@ -82,11 +82,13 @@ const Profile = () => {
               <div>
                 {profile?.trainer.map((trainer, i) => {
                 return (
-                  <TrainerList 
-                    trainer={trainer}
-                    key={i}
-                    index={i}
-                  />
+                  // <div className="col container center" style={{maxWidth: '400px'}}>
+                    <TrainerList 
+                      trainer={trainer}
+                      key={i}
+                      index={i}
+                    />
+                  // </div>
                 )})}
               </div>
               <div className="col container" style={{marginBottom: '30px', width: '400px'}}>
